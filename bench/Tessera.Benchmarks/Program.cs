@@ -2,7 +2,9 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Tessera;
 
-BenchmarkRunner.Run<AsOfBench>();
+// Run all: `dotnet run -c Release -- --filter *`
+// Run one: `dotnet run -c Release -- --filter *VectorBench*`
+BenchmarkSwitcher.FromTypes([typeof(AsOfBench), typeof(VectorBench)]).Run(args);
 
 [MemoryDiagnoser]
 public class AsOfBench

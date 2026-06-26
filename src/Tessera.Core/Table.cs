@@ -47,4 +47,7 @@ public sealed class Table
     public long[] Times(string name) => Values<long>(name);
 
     public Table With(params IColumn[] extra) => new([.. _columns, .. extra]);
+
+    /// <summary>A copy ordered by the time column ascending (stable). See <see cref="Sorting"/>.</summary>
+    public Table SortByTime(string on) => Sorting.SortByTime(this, on);
 }

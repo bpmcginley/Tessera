@@ -29,6 +29,20 @@ Joining 1,000,000 trades against 1,000,000 quotes, by symbol (500 symbols), back
 **~14× faster than pandas, ~7.7× faster than a competent C# binary-search join — and in less
 memory.** Single dev laptop, .NET 9; reproduce with the commands below.
 
+### Vectorized column math (and an honest note on its limits)
+
+SIMD over 20M doubles (AVX2, 4 doubles/lane):
+
+| Op | Scalar | SIMD | Speedup |
+| --- | ---: | ---: | ---: |
+| `Sum` (reduction) | 13.3 ms | 8.4 ms | ~1.6× |
+| `Multiply` (elementwise) | 46.0 ms | 40.2 ms | ~1.14× |
+
+The multiply barely improves because it's **memory-bandwidth bound** — it writes a 160 MB result
+array, so the bottleneck is moving data, not the arithmetic. `Sum` touches far less memory and
+gets closer to the 4-lane ceiling. The useful lesson is knowing which of your column ops are
+compute-bound (SIMD helps) versus bandwidth-bound (it can't).
+
 ## The model
 
 - **`Column<T>`** — a named, contiguous typed array. The atom.
@@ -72,14 +86,16 @@ The headline number is Tessera's merge sweep vs `pandas.merge_asof` on identical
 
 ## Contract & limits (today)
 
-- Inputs **must be sorted by the time column ascending**; the `by` column must hold dense int
-  codes from `Factorize`. Both are deliberate — they're what make the sweep fast.
+- The as-of join needs inputs **sorted by time ascending**; pass raw ticks through
+  `Table.SortByTime(...)` first (stable, so same-timestamp rows keep their order).
+- The `by` column must hold dense int codes from `Categoricals.Factorize`.
 - Single int group key; backward direction only. Forward / tolerance / multi-key are next.
 
 ## Roadmap
 
+- [x] Stable sort operator (`Table.SortByTime`) so inputs needn't arrive pre-sorted
+- [x] SIMD-vectorized column math (`System.Numerics.Vector<T>`): `Add/Sub/Mul/Div/Sum`
 - [ ] Forward and nearest as-of; a `tolerance` window
-- [ ] SIMD-vectorized column arithmetic (`System.Runtime.Intrinsics`)
-- [ ] Multi-key `by` and a sort operator so inputs needn't be pre-sorted
+- [ ] Multi-key `by`
 - [ ] Memory-mapped column files (out-of-core)
 - [ ] A tiny expression/query layer over the table ops
