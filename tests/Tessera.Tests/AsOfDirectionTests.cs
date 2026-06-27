@@ -227,4 +227,46 @@ public class AsOfDirectionTests
 
         Assert.Equal(new[] { 10, 20, 30 }, j.Values<int>("tag"));
     }
+
+    // Regression: int64 gap math overflows on an epoch-straddling axis (negative ns, multi-century span).
+    [Fact]
+    public void Nearest_handles_epoch_straddling_times_without_overflow()
+    {
+        long lt = -8_500_000_000_000_000_000L;
+        var right = new Table(
+            new Column<long>("t", [lt - 1, 8_800_000_000_000_000_000L]),
+            new Column<int>("g", [0, 0]),
+            new Column<double>("v", [11.0, 99.0]));
+
+        var j = AsOfJoin.Join(Trades([lt], [0]), right, "t", "g", AsOfDirection.Nearest, 0, true, "v");
+
+        // backward gap = 1ns, forward gap ~1.7e19ns; backward must win.
+        Assert.Equal(11.0, j.Values<double>("v")[0]);
+    }
+
+    [Fact]
+    public void Backward_tolerance_handles_epoch_straddling_span_without_overflow()
+    {
+        var right = new Table(
+            new Column<long>("t", [long.MinValue + 100]),
+            new Column<int>("g", [0]),
+            new Column<double>("v", [7.0]));
+
+        var j = AsOfJoin.Join(Trades([long.MaxValue - 100], [0]), right, "t", "g", AsOfDirection.Backward, 1000, true, "v");
+
+        Assert.True(double.IsNaN(j.Values<double>("v")[0]));   // true gap ~1.8e19 >> 1000
+    }
+
+    [Fact]
+    public void Forward_tolerance_handles_epoch_straddling_span_without_overflow()
+    {
+        var right = new Table(
+            new Column<long>("t", [long.MaxValue - 100]),
+            new Column<int>("g", [0]),
+            new Column<double>("v", [42.0]));
+
+        var j = AsOfJoin.Join(Trades([long.MinValue + 100], [0]), right, "t", "g", AsOfDirection.Forward, 1000, true, "v");
+
+        Assert.True(double.IsNaN(j.Values<double>("v")[0]));
+    }
 }

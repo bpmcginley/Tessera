@@ -73,7 +73,8 @@ public static class AsOfJoin
                     if (b < 0) match[i] = f;
                     else if (f < 0) match[i] = b;
                     // Strict <: equal distance keeps the backward row, matching pandas direction='nearest'.
-                    else match[i] = rightTime[f] - leftTime[i] < leftTime[i] - rightTime[b] ? f : b;
+                    // Int128: an epoch-straddling span exceeds int64 and would otherwise flip the choice.
+                    else match[i] = (Int128)rightTime[f] - leftTime[i] < (Int128)leftTime[i] - rightTime[b] ? f : b;
                 }
                 break;
         }
@@ -104,7 +105,8 @@ public static class AsOfJoin
             else while (j < m && rt[j] < t) last[rk[j]] = j++;
 
             int c = last[lk[i]];
-            match[i] = c >= 0 && (!hasTol || t - rt[c] <= tol) ? c : -1;
+            // Int128 gap: an epoch-straddling span (pre-1970 negative ns) can exceed int64.
+            match[i] = c >= 0 && (!hasTol || (Int128)t - rt[c] <= tol) ? c : -1;
         }
     }
 
@@ -127,7 +129,8 @@ public static class AsOfJoin
             else while (k >= 0 && rt[k] > t) next[rk[k]] = k--;
 
             int c = next[lk[i]];
-            match[i] = c >= 0 && (!hasTol || rt[c] - t <= tol) ? c : -1;
+            // Int128 gap: an epoch-straddling span (pre-1970 negative ns) can exceed int64.
+            match[i] = c >= 0 && (!hasTol || (Int128)rt[c] - t <= tol) ? c : -1;
         }
     }
 
