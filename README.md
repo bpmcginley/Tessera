@@ -48,7 +48,9 @@ compute-bound (SIMD helps) versus bandwidth-bound (it can't).
 - **`Column<T>`** — a named, contiguous typed array. The atom.
 - **`Table`** — equal-length columns addressed by name. Immutable; ops return new tables that
   share arrays where they can.
-- **`AsOfJoin.Backward`** — the star. Most-recent-prior join within a group key.
+- **`AsOfJoin.Join`** — the star. Backward / forward / nearest as-of join within a group key,
+  with an optional `tolerance` window and `allowExactMatches` (pandas `merge_asof` semantics).
+  `AsOfJoin.Backward` is the convenience shortcut for the common case.
 - **`Bars.Ohlcv`** — second primitive: ticks → fixed-interval OHLCV + VWAP bars.
 - **`Categoricals.Factorize`** — string symbols → dense int codes so hot paths stay branch-free
   and allocation-free.
@@ -67,6 +69,11 @@ var quotes = new Table(
 
 var enriched = AsOfJoin.Backward(trades, quotes, on: "time", by: "sym", bring: "bid");
 // each trade now carries the bid that was live at its timestamp
+
+// Or pick the direction, only match within 1s, and exclude exact-time rows:
+var nearest = AsOfJoin.Join(trades, quotes, on: "time", by: "sym",
+    direction: AsOfDirection.Nearest, tolerance: 1_000_000_000, allowExactMatches: false,
+    bring: "bid");
 ```
 
 ## Build, test, benchmark
@@ -89,13 +96,13 @@ The headline number is Tessera's merge sweep vs `pandas.merge_asof` on identical
 - The as-of join needs inputs **sorted by time ascending**; pass raw ticks through
   `Table.SortByTime(...)` first (stable, so same-timestamp rows keep their order).
 - The `by` column must hold dense int codes from `Categoricals.Factorize`.
-- Single int group key; backward direction only. Forward / tolerance / multi-key are next.
+- Single int group key. Multi-key `by` is next.
 
 ## Roadmap
 
 - [x] Stable sort operator (`Table.SortByTime`) so inputs needn't arrive pre-sorted
 - [x] SIMD-vectorized column math (`System.Numerics.Vector<T>`): `Add/Sub/Mul/Div/Sum`
-- [ ] Forward and nearest as-of; a `tolerance` window
+- [x] Forward and nearest as-of (`AsOfDirection`) + `tolerance` window + `allowExactMatches`
 - [ ] Multi-key `by`
 - [ ] Memory-mapped column files (out-of-core)
 - [ ] A tiny expression/query layer over the table ops
