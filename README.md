@@ -95,8 +95,10 @@ The headline number is Tessera's merge sweep vs `pandas.merge_asof` on identical
 
 - The as-of join needs inputs **sorted by time ascending**; pass raw ticks through
   `Table.SortByTime(...)` first (stable, so same-timestamp rows keep their order).
-- The `by` column must hold dense int codes from `Categoricals.Factorize`.
-- Single int group key. Multi-key `by` is next.
+- The `by` column must hold dense int codes. Use `Categoricals.FactorizeShared(left, right)` so a
+  symbol gets the *same* code on both sides — codes are only comparable across tables if they share
+  one mapping.
+- Single int group key. Multi-key `by` (tuple of keys) is next.
 
 ## Roadmap
 
