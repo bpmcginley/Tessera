@@ -98,13 +98,14 @@ The headline number is Tessera's merge sweep vs `pandas.merge_asof` on identical
 - The `by` column must hold dense int codes. Use `Categoricals.FactorizeShared(left, right)` so a
   symbol gets the *same* code on both sides — codes are only comparable across tables if they share
   one mapping.
-- Single int group key. Multi-key `by` (tuple of keys) is next.
+- For a multi-column `by` (symbol + venue), fold the shared codes with
+  `Categoricals.CombineCodes(columns, cardinalities)` and join on the result.
 
 ## Roadmap
 
 - [x] Stable sort operator (`Table.SortByTime`) so inputs needn't arrive pre-sorted
 - [x] SIMD-vectorized column math (`System.Numerics.Vector<T>`): `Add/Sub/Mul/Div/Sum`
 - [x] Forward and nearest as-of (`AsOfDirection`) + `tolerance` window + `allowExactMatches`
-- [ ] Multi-key `by`
+- [x] Multi-key `by` via `Categoricals.CombineCodes` (mixed-radix over shared codes)
 - [ ] Memory-mapped column files (out-of-core)
 - [ ] A tiny expression/query layer over the table ops

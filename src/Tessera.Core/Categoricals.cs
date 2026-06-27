@@ -68,4 +68,33 @@ public static class Categoricals
         var r = Encode(right);
         return (l, r, [.. levels]);
     }
+
+    /// <summary>
+    /// Fold several already-shared key columns into one dense code per row via mixed-radix, so a
+    /// multi-column <c>by</c> (e.g. symbol + venue) can drive the single-key join. Pass the SAME
+    /// <paramref name="cardinalities"/> (each key's level count from <see cref="FactorizeShared"/>)
+    /// for both tables and identical tuples get identical codes on both sides. The code space is the
+    /// product of the cardinalities, so keep the combined cardinality modest.
+    /// </summary>
+    public static int[] CombineCodes(int[][] columns, int[] cardinalities)
+    {
+        if (columns.Length == 0)
+            throw new ArgumentException("Need at least one key column.");
+        if (columns.Length != cardinalities.Length)
+            throw new ArgumentException("One cardinality per key column.");
+
+        int n = columns[0].Length;
+        foreach (var c in columns)
+            if (c.Length != n) throw new ArgumentException("Key columns must be the same length.");
+
+        var codes = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            long combined = 0;
+            for (int c = 0; c < columns.Length; c++)
+                combined = combined * cardinalities[c] + columns[c][i];
+            codes[i] = checked((int)combined);   // guards an oversized combined key space
+        }
+        return codes;
+    }
 }
