@@ -1,2 +1,6 @@
-gen 0: 18 seed molecules computed with DFT (530s)
-gen 1: screened 231 by xTB, 26 by DFT; model error on new picks 1.8 kJ/mol; best c1cnc2c(c1)ncc1ncccc12 dH=46.1 wt%=7.23  (597s)
+gen 0: 18 seed molecules computed with DFT (0s)
+gen 1: screened 231 by xTB, 26 by DFT; model error on new picks 1.9 kJ/mol; best c1cnc2c(c1)ncc1ncccc12 dH=46.1 wt%=7.23  (1s)
+gen 2: screened 316 by xTB, 34 by DFT; model error on new picks 1.2 kJ/mol; best c1cnc2cnc3cncnc3c2c1 dH=45.9 wt%=7.19  (460s)
+gen 3: screened 371 by xTB, 42 by DFT; model error on new picks 1.7 kJ/mol; best c1cnc2cnc3cncnc3c2c1 dH=45.9 wt%=7.19  (535s)
+gen 4: screened 395 by xTB, 50 by DFT; model error on new picks 1.1 kJ/mol; best c1cnc2cnc3cncnc3c2c1 dH=45.9 wt%=7.19  (530s)
+gen 5: screened 431 by xTB, 58 by DFT; model error on new picks 1.1 kJ/mol; best c1cnc2c(c1)ccc1ncncc12 dH=45.6 wt%=7.23  (629s)

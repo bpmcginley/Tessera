@@ -1,0 +1,34 @@
+[
+ {
+  "name": "N-ethylcarbazole (benchmark)",
+  "lean": "CCn1c2ccccc2c2ccccc21",
+  "rich": "CCN1C2CCCCC2C2CCCCC21",
+  "wt_pct": 5.83,
+  "dH_gas_computed": 45.2,
+  "dH_liquid_estimate": 48.7
+ },
+ {
+  "name": "9-ethyl-beta-carboline",
+  "lean": "CCn1c2ccccc2c2ccncc21",
+  "rich": "CCN1C2CCCCC2C2CCNCC21",
+  "wt_pct": 5.81,
+  "dH_gas_computed": 43.2,
+  "dH_liquid_estimate": 46.7
+ },
+ {
+  "name": "5-ethyl-gamma-carboline",
+  "lean": "CCn1c2ccccc2c2cnccc21",
+  "rich": "CCN1C2CCCCC2C2CNCCC21",
+  "wt_pct": 5.81,
+  "dH_gas_computed": 42.4,
+  "dH_liquid_estimate": 45.9
+ },
+ {
+  "name": "5-ethyl-delta-carboline",
+  "lean": "CCn1c2ccccc2c2ncccc21",
+  "rich": "CCN1C2CCCCC2C2NCCCC21",
+  "wt_pct": 5.81,
+  "dH_gas_computed": 41.7,
+  "dH_liquid_estimate": 45.2
+ }
+]
