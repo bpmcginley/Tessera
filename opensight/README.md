@@ -15,6 +15,54 @@ Each eye has two thin moulded plastic plates in a round cell:
 
 This folder is self-contained and unrelated to the other projects in the repo.
 
+## The product concept: one lens that becomes any prescription
+
+**Problem.** Glasses are cheap to make but hard to deliver. Each person needs
+their own lens, so a clinic must either stock hundreds of lens types, send
+orders to a grinding lab and wait, or hand out sphere-only ready-mades that
+ignore astigmatism. That supply chain, not the plastic, is why so many people
+go without.
+
+**Concept.** A single stock item: a frame holding two of these lens cells. A
+health worker (or the wearer) turns three small screws per eye to dial in the
+prescription, then locks them. No lab, no inventory, no waiting. If eyesight
+changes, re-dial.
+
+**Two ways to use it, with different certainty:**
+
+| Use | What it needs | Confidence |
+|---|---|---|
+| **Set to a known prescription** from any eye test or autorefractor, using the printed scales | Scales that read true | High: this is pure optics and is what the checks below verify |
+| **Self-adjust** by looking at a chart | The wearer to find sphere, then astigmatism amount and axis | Sphere: shown in published trials. Astigmatism: plausible, needs a trial |
+
+**Checks for the first use** (`experiments/dispense.py`, `results/dispense.json`):
+
+- **Scales are straight lines.** Sphere changes 0.76 D per mm of slide, cylinder
+  1.51 D per mm, and neither departs from a straight scale by more than 0.03 D.
+  A quarter-dioptre step is 0.33 mm of sphere slide and 0.17 mm of cylinder
+  slide (`results/setting_table.csv`).
+- **Mechanism accuracy needed.** With 0.05 mm of play and 2° of axis error,
+  95% of 60 random prescriptions land within 0.13 D of target on-axis. At
+  0.1 mm and 3° it is 0.23 D; at 0.2 mm and 5° it is 0.49 D, which is too
+  loose. So the requirement is **position held to about 0.05–0.1 mm**, which a
+  fine-thread screw gives easily and a plain slider may not.
+- **Fit.** Moving the lens 4 mm closer to or further from the eye changes the
+  average blur at 20° of gaze from 0.09 D to at most 0.14 D.
+- **Colour fringing** is within about 7% of an ordinary polycarbonate lens of
+  the same power off-centre, plus under 0.6 arcminute on-axis at the extremes.
+- **Weight and bulk.** 6.4 g per eye for both plates; the stack is at most
+  5.9 mm thick. An ordinary lens is roughly 3–8 g.
+
+**Mechanism outline (not yet engineered or checked):**
+
+- Each plate sits in a thin carrier. One fine-thread screw with left- and
+  right-hand sections drives the two carriers equal and opposite in x
+  (sphere). A second, finer screw does the same in y (cylinder).
+- The carriers sit in a round cell that turns in the frame against a printed
+  0–180° scale (axis) and is clamped by a lock ring.
+- Printed scales in dioptres on each screw; a drop of adhesive or a snap cap
+  locks the setting.
+
 ## Why this matters
 
 - Hundreds of millions of people lack glasses mainly because there is no one
@@ -86,7 +134,8 @@ Checks beyond the table:
 - `opensight/optics.py` — exact ray tracer and spectacle-style power measurement.
 - `opensight/design.py` — the lens model; `load()` rebuilds the final design.
 - `experiments/optimize.py` — shape optimisation (`WIDE=1` for the final design).
-- `experiments/report.py`, `experiments/tolerance.py` — the numbers above.
+- `experiments/report.py`, `experiments/tolerance.py`, `experiments/dispense.py` — the numbers above.
+- `results/setting_table.csv` — prescription-to-slide table for printing the scales.
 - `results/design_A0.000635_gap1_wide.json` — the final design.
 - `results/plate_coefficients.json`, `results/*_sag_mm.csv` — plate shapes for a mould maker.
 - `tests/test_optics.py` — five checks, all passing.
@@ -116,9 +165,9 @@ python experiments/tolerance.py results/design_A0.000635_gap1_wide.json 60
   trial.
 - **Comparison lenses are simplified** (parabolic surfaces, one curved form),
   not the best commercial lenses.
-- **One colour, one eye geometry.** Colour fringing is not computed (it should
-  be similar to any polycarbonate lens of the same power). The eye's rotation
-  centre is fixed at 27 mm behind the lens; fit variation is not tested.
+- **Sideways fit not tested.** Distance from the eye and colour fringing are
+  now checked (see above); a lens sitting off-centre left/right or tilted on
+  the face is not.
 - **Range and size.** Sphere −6 to +3 D, cylinder to 3 D, 34 mm round lenses.
   Stronger prescriptions and prism are not covered. Round lenses are needed
   for the rotating cell.
