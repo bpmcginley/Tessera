@@ -7,8 +7,9 @@ import cadquery as cq
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from opensight.design import load
 
-p = load(sys.argv[1])
-AX, AY = p.radius + 3.2, p.radius + 1.2          # plate outline (ellipse semi-axes, mm)
+RP = float(sys.argv[2]) if len(sys.argv) > 2 else 16.0     # plate (disc) radius, mm
+p = load(sys.argv[1], t0=1.9)
+AX = AY = RP                                               # round plates (see experiments/slim.py)
 G = np.linspace(-AX - 2, AX + 2, 45)
 
 
@@ -42,7 +43,7 @@ TRAVEL = 3.1                                   # each plate moves +/- this much 
 R_in = AX + 1.5 + TRAVEL + 0.3                 # smallest circle the sliding carriers fit in
 R_out = R_in + 1.5
 cell = (cq.Workplane("XY").workplane(offset=zf - 1.5).circle(R_out).circle(R_in).extrude(zr - zf + 3.0)
-        .union(cq.Workplane("XY").workplane(offset=zf - 1.5).circle(R_in).circle(p.radius).extrude(1.0)))
+        .union(cq.Workplane("XY").workplane(offset=zf - 1.5).circle(R_in).circle(RP - 1.0).extrude(1.0)))
 ys = AY + 3.2                                  # screws sit in the free space above and below the plates
 half = float(np.sqrt(R_in**2 - ys**2)) - 0.5
 screw_x = cq.Workplane("YZ").workplane(offset=-half).center(ys, 0).circle(0.8).extrude(2 * half)
@@ -53,6 +54,6 @@ for n, o, c in (("front_plate", cq.Workplane(obj=front), "lightblue"), ("rear_pl
                 ("rear_carrier", carrier_r, "gray"), ("rotating_cell", cell, "white"), ("sphere_screw", screw_x, "orange"), ("cylinder_screw", screw_y, "orange"), ("lock_ring", lock, "black")):
     asm.add(o, name=n, color=cq.Color(c))
 asm.save("cad/cell_layout.step")
-out["cell_layout"] = dict(clear_window_diameter_mm=2 * p.radius, cell_outer_diameter_mm=round(2 * (R_out + 1.5), 1), depth_mm=round(zr - zf + 4.2, 1), note="block-level layout for discussion; not an engineered mechanism")
+out["cell_layout"] = dict(plate_diameter_mm=2 * RP, cell_outer_diameter_mm=round(2 * (R_out + 1.5), 1), depth_mm=round(zr - zf + 4.2, 1), note="block-level layout for discussion; not an engineered mechanism")
 json.dump(out, open("cad/summary.json", "w"), indent=1)
 print(json.dumps(out, indent=1))

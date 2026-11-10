@@ -1,0 +1,138 @@
+{
+ "34 mm discs": {
+  "plate_diameter_mm": 34.0,
+  "cell_outer_diameter_mm": 49.2,
+  "min_thickness_mm": 1.07,
+  "max_thickness_mm": 2.96,
+  "weight_g_per_eye": 4.34,
+  "field": {
+   "-6.0 D": {
+    "sideways_deg": 24.0,
+    "up_down_deg": 27.8,
+    "blur_at_sideways_edge_D": 0.13
+   },
+   "-4.0 D": {
+    "sideways_deg": 26.4,
+    "up_down_deg": 28.1,
+    "blur_at_sideways_edge_D": 0.102
+   },
+   "-1.5 D": {
+    "sideways_deg": 29.0,
+    "up_down_deg": 28.2,
+    "blur_at_sideways_edge_D": 0.093
+   },
+   "+1.0 D": {
+    "sideways_deg": 26.3,
+    "up_down_deg": 28.1,
+    "blur_at_sideways_edge_D": 0.115
+   },
+   "+3.0 D": {
+    "sideways_deg": 24.0,
+    "up_down_deg": 27.8,
+    "blur_at_sideways_edge_D": 0.147
+   }
+  }
+ },
+ "32 mm discs": {
+  "plate_diameter_mm": 32.0,
+  "cell_outer_diameter_mm": 47.2,
+  "min_thickness_mm": 1.07,
+  "max_thickness_mm": 2.96,
+  "weight_g_per_eye": 3.83,
+  "field": {
+   "-6.0 D": {
+    "sideways_deg": 22.2,
+    "up_down_deg": 26.1,
+    "blur_at_sideways_edge_D": 0.103
+   },
+   "-4.0 D": {
+    "sideways_deg": 24.6,
+    "up_down_deg": 26.4,
+    "blur_at_sideways_edge_D": 0.092
+   },
+   "-1.5 D": {
+    "sideways_deg": 27.4,
+    "up_down_deg": 26.6,
+    "blur_at_sideways_edge_D": 0.079
+   },
+   "+1.0 D": {
+    "sideways_deg": 24.6,
+    "up_down_deg": 26.4,
+    "blur_at_sideways_edge_D": 0.099
+   },
+   "+3.0 D": {
+    "sideways_deg": 22.2,
+    "up_down_deg": 26.1,
+    "blur_at_sideways_edge_D": 0.131
+   }
+  }
+ },
+ "30 mm discs": {
+  "plate_diameter_mm": 30.0,
+  "cell_outer_diameter_mm": 45.2,
+  "min_thickness_mm": 1.07,
+  "max_thickness_mm": 2.96,
+  "weight_g_per_eye": 3.35,
+  "field": {
+   "-6.0 D": {
+    "sideways_deg": 20.4,
+    "up_down_deg": 24.3,
+    "blur_at_sideways_edge_D": 0.087
+   },
+   "-4.0 D": {
+    "sideways_deg": 22.8,
+    "up_down_deg": 24.7,
+    "blur_at_sideways_edge_D": 0.082
+   },
+   "-1.5 D": {
+    "sideways_deg": 25.7,
+    "up_down_deg": 24.9,
+    "blur_at_sideways_edge_D": 0.07
+   },
+   "+1.0 D": {
+    "sideways_deg": 22.8,
+    "up_down_deg": 24.7,
+    "blur_at_sideways_edge_D": 0.085
+   },
+   "+3.0 D": {
+    "sideways_deg": 20.4,
+    "up_down_deg": 24.3,
+    "blur_at_sideways_edge_D": 0.12
+   }
+  }
+ },
+ "28 mm discs": {
+  "plate_diameter_mm": 28.0,
+  "cell_outer_diameter_mm": 43.2,
+  "min_thickness_mm": 1.07,
+  "max_thickness_mm": 2.96,
+  "weight_g_per_eye": 2.9,
+  "field": {
+   "-6.0 D": {
+    "sideways_deg": 18.5,
+    "up_down_deg": 22.5,
+    "blur_at_sideways_edge_D": 0.086
+   },
+   "-4.0 D": {
+    "sideways_deg": 21.0,
+    "up_down_deg": 22.9,
+    "blur_at_sideways_edge_D": 0.074
+   },
+   "-1.5 D": {
+    "sideways_deg": 23.9,
+    "up_down_deg": 23.1,
+    "blur_at_sideways_edge_D": 0.062
+   },
+   "+1.0 D": {
+    "sideways_deg": 20.9,
+    "up_down_deg": 22.9,
+    "blur_at_sideways_edge_D": 0.073
+   },
+   "+3.0 D": {
+    "sideways_deg": 18.5,
+    "up_down_deg": 22.5,
+    "blur_at_sideways_edge_D": 0.112
+   }
+  }
+ }
+}

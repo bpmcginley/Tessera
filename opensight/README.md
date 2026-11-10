@@ -74,17 +74,20 @@ ray tracing itself. It does not independently confirm my way of turning rays
 into a blur number, or the eye geometry I assumed.
 
 **2. 3D models.** `cad/front_plate.step` and `cad/rear_plate.step` are solid
-models of the two plates with the freeform faces spline-fitted (3.1 g and
-3.4 g in polycarbonate, matching the optical model's 6.4 g).
+models of the two plates with the freeform faces spline-fitted (about 1.9 g
+each in polycarbonate for the 32 mm round version).
 `cad/cell_layout.step` is a block-level layout of the cell.
 
 **3. Mechanism — feasible on estimates, with one real drawback.**
 
-- *Size:* to let 40 × 36 mm plates slide ±3 mm inside a rotating round cell,
-  the cell must be about **56 mm across for a 34 mm clear window**. Two cells
-  fit side by side on a typical face (eyes ~62 mm apart) with only about 6 mm
-  between them. It will look like thick-rimmed round goggles. A smaller window
-  or a non-rotating design would be needed to slim it.
+- *Size:* my first layout was needlessly large (56 mm across) because it used
+  plates wider than the window. With plain **round 32 mm plates** the cell is
+  about **47 mm across**, the pair of plates weighs **3.8 g per eye** instead of
+  6.4 g, and the sharp field of view is still ±22° sideways at the strongest
+  prescriptions and ±27° in the middle of the range (`experiments/slim.py`,
+  `results/slim.json`). 30 mm plates give 45 mm, 3.4 g and ±20–26°. That is the
+  size of small round glasses with a thick rim: acceptable, not elegant. The
+  STEP files in `cad/` are the 32 mm version.
 - *Accuracy:* a stack-up of estimated errors (thread pitch, backlash, scale
   reading, seating, temperature) gives 0.08 mm of position error for sphere
   and 0.07 mm for cylinder at the 95% level, about 0.06 D and 0.10 D. That
@@ -211,8 +214,8 @@ python experiments/tolerance.py results/design_A0.000635_gap1_wide.json 60
   trial.
 - **Comparison lenses are simplified** (parabolic surfaces, one curved form),
   not the best commercial lenses.
-- **Bulk.** The rotating cell is about 56 mm across for a 34 mm window (see
-  the engineering pass). This may matter for acceptance more than the optics.
+- **Bulk.** The cell is about 47 mm across for 32 mm round lenses (see the
+  engineering pass). Appearance may matter for acceptance more than the optics.
 - **Range and size.** Sphere −6 to +3 D, cylinder to 3 D, 34 mm round lenses.
   Stronger prescriptions and prism are not covered. Round lenses are needed
   for the rotating cell.
