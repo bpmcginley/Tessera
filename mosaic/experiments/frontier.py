@@ -14,9 +14,11 @@ from mosaic.program import (SCENARIOS, Mosaic, make_assay, population, run_dorfm
                             run_individual, run_informative_dorfman)
 
 N = int(os.environ.get("N", 100_000))
+SEED = int(os.environ.get("SEED", 0))
 
 
-def world(name, seed=0):
+def world(name, seed=None):
+    seed = SEED if seed is None else seed
     sc = SCENARIOS[name]
     a = make_assay(sc)
     rng = np.random.default_rng(seed)
@@ -27,7 +29,7 @@ def world(name, seed=0):
 def task(args):
     name, method, knob = args
     sc, a, p, inf, loads = world(name)
-    rng = np.random.default_rng(hash((method, str(knob))) % 2**32)
+    rng = np.random.default_rng(abs(hash((method, str(knob), SEED))) % 2**32)
     t0 = time.time()
     if method == "individual":
         r = run_individual(rng, a, p, inf, loads, knob)
@@ -58,5 +60,5 @@ if __name__ == "__main__":
             t0 = time.time()
             rows = pool.map(task, sorted(tasks(name), key=lambda t: -(t[1] == "mosaic") * (1 + t[2][2] if t[1] == "mosaic" else 0)), chunksize=1)
             sc = SCENARIOS[name]
-            json.dump(dict(scenario=name, params=sc, N=N, rows=rows), open(f"results/frontier_{name}.json", "w"), indent=1)
+            json.dump(dict(scenario=name, seed=SEED, params=sc, N=N, rows=rows), open(f"results/frontier_{name}.json" if SEED == 0 else f"results/frontier_{name}_seed{SEED}.json", "w"), indent=1)
             print(name, f"{time.time()-t0:.0f}s", flush=True)

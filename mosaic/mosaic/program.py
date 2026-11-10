@@ -184,6 +184,9 @@ class Mosaic:
 
 
 SCENARIOS = {
+    # load model fitted to published pooled Xpert Ultra sensitivity (experiments/fit_assay.py);
+    # pool size capped at 4, the only size the data support. Risk-score AUC is still assumed.
+    "tb_ultra_fit": dict(prev=0.10, auc=0.85, load=dict(mu=7.5, sigma=4.5, lod=2.2, slope=0.3), sp=0.98, max_pool=4),
     # name: (prevalence, risk-score AUC, assay kwargs, max_pool)
     "tb_triage": dict(prev=0.10, auc=0.85, load=dict(mu=4.0, sigma=1.4, lod=2.2, slope=0.3), sp=0.99, max_pool=8),
     "community": dict(prev=0.01, auc=0.85, load=dict(mu=4.0, sigma=1.4, lod=2.2, slope=0.3), sp=0.99, max_pool=16),

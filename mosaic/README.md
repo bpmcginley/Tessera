@@ -45,6 +45,29 @@ people per scenario, one seed.
 In a noiseless setting the engine uses within 3–5% of the Shannon limit for
 prevalence ≥ 5% (Dorfman is 25–50% above it); see `tests/test_core.py`.
 
+### Grounded in published data (TB)
+
+The first TB scenario used an invented dilution curve. Published figures show
+it was too pessimistic: in the Start4All phase 1 study (conference slides,
+2026, not yet peer reviewed) pooled Xpert Ultra kept 84.9% sensitivity against
+88.0% for individual testing, mostly in pools of 4; a 2021 systematic review
+reports similar retention for pools of 4 and lower sensitivity above 4.
+`experiments/fit_assay.py` fits the load model to those two numbers, and the
+`tb_ultra_fit` scenario caps pools at 4. Prevalence (10%) and risk-score quality
+(AUC 0.85) are still assumptions. Three seeds, 40,000 people each:
+
+| Target (share of individual-testing sensitivity) | Triage + individual | Dorfman | Risk-ordered Dorfman | MOSAIC |
+|---|---|---|---|---|
+| 100% | 0.98–1.00 | cannot reach | cannot reach | **0.51–0.57** |
+| 98% | 0.83–0.84 | cannot reach | 0.48 | **0.42–0.43** |
+| 96% | 0.69–0.70 | 0.56–0.57 | 0.45 | **0.36** |
+| 93% | 0.59–0.60 | 0.56–0.57 | 0.37–0.40 | **0.31–0.34** |
+
+So on the fitted assay MOSAIC matches individual testing's sensitivity with
+about half the cartridges, and uses 10–20% fewer than risk-ordered Dorfman
+where that method can reach the target. The 100% row relies on some repeat
+tests (see Limits).
+
 ### What did *not* work (kept on purpose)
 
 - **No risk information + strong dilution: no gain.** When sensitivity is capped
@@ -141,15 +164,25 @@ N=200000 python experiments/evolve.py community   # improvement loop (~30 min)
 - Repeat tests of the same person are simulated as independent given their
   load. Real repeat tests on one specimen are more correlated, so the
   highest-sensitivity MOSAIC points (which rely on retests) are optimistic.
-- Risk-aware pooling itself is not new (informative Dorfman, Bayesian halving
-  exist in the literature); I have not done a literature search in this
-  session. What is here is an open, exact, tested implementation plus an honest
-  benchmark, not a proven breakthrough.
+- **The core idea is not new.** A short literature check found Bayesian group
+  testing with dilution and individual risk priors (Tatsuoka, Chen and Lu,
+  *Biostatistics* 2023, "Bayesian halving"), halving for heterogeneous
+  populations (Bilder and Tebbs), and pooling with dilution and heterogeneous
+  priors (Saraiva 2023; Aprahamian and El-Amine 2022). The search did not turn
+  up pooled Xpert guided by X-ray/risk scores, but it was brief. What is here is
+  an open, exact, tested implementation, the load-aware decoder, the exact
+  improvement loop, and an honest benchmark -- not a proven breakthrough.
 - Baselines were tuned over a grid, not exhaustively.
+
+## Sources
+
+- Systematic review of pooling sputum for Xpert testing, *Emerg Infect Dis* 2021: https://wwwnc.cdc.gov/eid/article/27/3/20-4090_article
+- Start4All phase 1 slides (2026): https://aslm.org/wp-content/uploads/2026/04/4.-Tushar-GARG.pdf
+- Bayesian group testing with dilution effects: https://www.medrxiv.org/content/10.1101/2021.01.15.21249894.full.pdf
 
 ## Next steps that would matter
 
-1. Fit the load and dilution model to published pooled-assay data.
+1. Fit to individual-level pooled-assay data (only two summary numbers are used so far).
 2. Batched (few-round) policy for slow assays.
 3. Built-in safeguards against miscalibrated risk scores.
 4. A wet-lab pilot on stored samples with known results.
