@@ -157,7 +157,8 @@ class Mosaic:
     def tree(self, stratum, size, pbar):
         key = (stratum, size)
         if key not in self.trees:
-            self.trees[key] = Tree(self.cohort(size, pbar), self.policy_factory())
+            pol = self.policies[stratum]() if getattr(self, "policies", None) and stratum in self.policies else self.policy_factory()
+            self.trees[key] = Tree(self.cohort(size, pbar), pol, max_depth=getattr(self, "max_depth", 60))
         return self.trees[key]
 
     def run(self, rng, p, inf, loads, strata_p=None):

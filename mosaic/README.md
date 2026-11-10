@@ -53,10 +53,10 @@ prevalence ≥ 5% (Dorfman is 25–50% above it); see `tests/test_core.py`.
 - **Full sensitivity at low prevalence is out of reach for every pooling
   method tried** (community ≥ 97%, PCR 100%): low-load samples are lost when
   diluted. That is physics, not algorithm.
-- **Self-improvement loop failed.** `mosaic/learn.py` fits a value function to
-  exact trees and re-plans with it (fitted policy iteration). Scored exactly,
-  each generation got *worse* (cost 0.97 → 1.18 → 3.0), so it is not used.
-  Log: `results/improve_tb_triage_q0.log`.
+- **First self-improvement attempt failed.** `mosaic/learn.py` fits a value
+  function to exact trees and re-plans with it (fitted policy iteration). Scored
+  exactly, each generation got *worse* (cost 0.97 → 1.18 → 3.0). It is kept only
+  as a record (`results/improve_tb_triage_q0.log`); the working loop is below.
 - **A wrong risk model is dangerous.** If the risk score is overconfident,
   MOSAIC skips people it should test: PCR sensitivity fell from 0.89 to 0.52
   (risk-ordered Dorfman: 0.92 to 0.70). Risk scores must be calibrated on local
@@ -65,6 +65,41 @@ prevalence ≥ 5% (Dorfman is 25–50% above it); see `tests/test_core.py`.
 - **Many rounds.** Tests are chosen one at a time; the TB operating point needs
   about 5 sequential tests per cohort on average. Slow assays need a batched
   variant, which is not built yet.
+
+## Recursive improvement (the version that works)
+
+`experiments/evolve.py` optimises one number, total cost per person in units
+of one test: **J = tests + 150 × missed infections + 30 × false alarms**.
+
+- Generation 0: one information-greedy policy for everyone.
+- Generations 1–4: for each of ~14 risk bands, mutate the best policies
+  (stopping thresholds, pool-size cap, dilution penalty), score **every
+  candidate exactly** on its full decision tree, keep the best. About 1,000
+  policies are scored exactly per scenario; a generation can never be worse.
+- Final: exact one-step lookahead on the first three tests of each cohort,
+  kept only in bands where it is exactly better.
+
+The optimiser only sees the decoder's model. Each generation is then re-scored
+on the truth simulator (200,000 people), which it never saw:
+
+| Scenario | Exact J: gen 0 → gen 4 → +lookahead | Simulator J: gen 0 → gen 4 → +lookahead | Best baseline (simulator) |
+|---|---|---|---|
+| High-load PCR | 0.446 → 0.429 → 0.428 | 0.443 → 0.440 → 0.442 | 0.476 (risk-ordered Dorfman) |
+| TB-like triage | 2.093 → 2.027 → 2.021 | 2.572 → 2.521 → 2.532 | 2.916 (triage + individual) |
+| Community 1% | 0.497 → 0.460 → 0.459 | 0.558 → 0.509 → 0.510 | 0.560 (risk-ordered Dorfman) |
+
+Honest reading:
+
+- In exact scoring the loop improves every generation, by 3–8% in total.
+- On the simulator the gain is clear only for community screening (−9%), about
+  2% for TB, and within noise for PCR (noise on simulator J is roughly ±0.01
+  for PCR and community, more for TB).
+- The exact lookahead step adds nothing measurable on the simulator.
+- The decoder is optimistic for TB (exact 2.03 vs simulated 2.52): its model of
+  the assay is not the simulator's.
+- After evolution MOSAIC's total cost is 7% (PCR), 13% (TB) and 9% (community)
+  below the best tuned baseline. Before evolution it only tied the baseline in
+  community screening.
 
 ## How it works
 
@@ -78,7 +113,8 @@ prevalence ≥ 5% (Dorfman is 25–50% above it); see `tests/test_core.py`.
   quality (AUC), truth simulator with persistent per-person loads, baselines,
   and the stratified MOSAIC programme.
 - `mosaic/card.py` — prints a bench card (example: `results/example_card.txt`).
-- `mosaic/learn.py` — the failed self-improvement loop (experimental).
+- `mosaic/policy.py` `Rollout` — exact lookahead used by the improvement loop.
+- `mosaic/learn.py` — the failed first self-improvement attempt (record only).
 
 The decoder never sees the true loads; it only sees test outcomes. The
 simulator and decoder use different models on purpose, so results include
@@ -93,6 +129,7 @@ python tests/test_core.py                    # correctness checks (~1 min)
 N=60000 python experiments/frontier.py       # all scenarios (~20 min, 4 cores)
 python experiments/summarize.py && python experiments/plot.py
 python experiments/robustness.py tb_triage 0.012 0.6 0 0.02
+N=200000 python experiments/evolve.py community   # improvement loop (~30 min)
 ```
 
 ## Limits (read before believing the table)

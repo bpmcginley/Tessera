@@ -22,8 +22,9 @@ class Greedy:
     small cohorts only, used to check the window family loses nothing).
     """
 
-    def __init__(self, tau_neg=0.01, tau_pos=0.9, max_pool=None, cand="windows", size_penalty=1e-6):
+    def __init__(self, tau_neg=0.01, tau_pos=0.9, max_pool=None, cand="windows", size_penalty=1e-6, call_thr=None):
         self.tau_neg, self.tau_pos = tau_neg, tau_pos
+        self.call_thr = min(0.5, tau_pos) if call_thr is None else call_thr
         self.max_pool, self.cand, self.size_penalty = max_pool, cand, size_penalty
 
     # costs implied by the thresholds (one test costs 1)
@@ -66,8 +67,8 @@ class Greedy:
         return int(C[0]) if len(C) else 0
 
     def declare(self, marg):
-        """Final call per person: positive iff posterior >= 0.5 (or >= tau_pos)."""
-        return marg >= min(0.5, self.tau_pos)
+        """Final call per person: positive iff posterior >= call_thr."""
+        return marg >= self.call_thr
 
 
 class Fixed:
@@ -212,6 +213,27 @@ class Tree:
 
         return rec((), 1.0), out
 
+    def j_from(self, hist, c_fn, c_fp, prune=1e-4):
+        """Exact cost-to-go of this tree's policy starting after `hist` (memoised)."""
+        memo = self.__dict__.setdefault("_jmemo", {})
+
+        def rec(h, reach):
+            if reach >= 1 and h in memo:
+                return memo[h]
+            nd = self.node(h)
+            marg = nd["marg"]
+            if nd["a"] == 0 or reach < prune:
+                calls = nd["calls"] if "calls" in nd else self.policy.declare(marg)
+                j = c_fn * float(marg[~calls].sum()) + c_fp * float((1 - marg[calls]).sum())
+            else:
+                pp = nd["ppos"]
+                j = 1.0 + (pp * rec(h + ((nd["a"], 1),), reach * pp) if pp > 0 else 0.0) + ((1 - pp) * rec(h + ((nd["a"], 0),), reach * (1 - pp)) if pp < 1 else 0.0)
+            if reach >= 1:
+                memo[h] = j
+            return j
+
+        return rec(hist, 1.0)
+
     def run(self, rng, infected, loads):
         """Execute on a true cohort (persistent loads). Returns (n_tests, calls, depth)."""
         a = self.cohort.assay
@@ -230,3 +252,46 @@ def entropy_bound(priors, assay=None):
     """Lower bound on expected tests for zero-error identification: sum of H(p_i) bits."""
     from .core import h2
     return float(np.sum(h2(np.asarray(priors))))
+
+
+class Rollout:
+    """Exact one-step policy improvement over a base policy.
+
+    On the first `horizon` steps, take the base policy's top-k candidate pools, compute for each
+    the *exact* expected cost of "test this pool, then follow the base policy",
+    and pick the cheapest -- or stop if stopping is cheaper.  By the policy
+    improvement theorem this is never worse than the base under the model."""
+
+    def __init__(self, base, c_fn, c_fp, topk=4, prune=1e-3, max_depth=30, horizon=3):
+        self.horizon = horizon
+        self.base, self.c_fn, self.c_fp, self.topk, self.prune, self.max_depth = base, c_fn, c_fp, topk, prune, max_depth
+        self.theta = c_fp / (c_fn + c_fp)
+        self._trees = {}
+
+    def declare(self, marg):
+        return marg >= self.theta
+
+    def act(self, cohort, w, hist=()):
+        if len(hist) >= self.horizon:  # lookahead only on the first steps; base policy after
+            return self.base.act(cohort, w, hist)
+        t = self._trees.get(id(cohort))
+        if t is None:
+            t = self._trees[id(cohort)] = Tree(cohort, self.base, max_depth=self.max_depth)
+        marg = cohort.marginals(w)
+        best_j = float(np.minimum(self.c_fn * marg, self.c_fp * (1 - marg)).sum())
+        best = 0
+        C, _ = self.base.ranked(cohort, w, marg)
+        if len(C) == 0:
+            return 0
+        C = C[: self.topk]
+        pp = cohort.lik_pos(C) @ w
+        for c, p in zip(C, pp):
+            c = int(c)
+            j = 1.0
+            if p > 0:
+                j += p * t.j_from(hist + ((c, 1),), self.c_fn, self.c_fp, self.prune)
+            if p < 1 and j < best_j:
+                j += (1 - p) * t.j_from(hist + ((c, 0),), self.c_fn, self.c_fp, self.prune)
+            if j < best_j - 1e-9:
+                best_j, best = j, c
+        return best

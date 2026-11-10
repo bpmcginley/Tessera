@@ -1,0 +1,15 @@
+gen 0: exact J = 2.0934   global thresholds (0.003, 0.8, 8, 1e-06)
+gen 1: exact J = 2.0429   (350 policies scored exactly so far)
+gen 2: exact J = 2.0365   (574 policies scored exactly so far)
+gen 3: exact J = 2.0299   (798 policies scored exactly so far)
+gen 4: exact J = 2.0266   (1022 policies scored exactly so far)
+rollout: exact J = 2.0210   improved bands: 6/14
+
+Truth simulator (never seen by the optimiser):
+  gen 0 (one global policy)          J=2.5720 tests=0.919 sens=0.894 spec=0.9983
+  gen 3 (evolved per risk band)      J=2.5580 tests=0.799 sens=0.886 spec=0.9985
+  gen 4 (evolved per risk band)      J=2.5207 tests=0.813 sens=0.890 spec=0.9984
+  final (+ exact lookahead)          J=2.5322 tests=0.811 sens=0.889 spec=0.9984
+  best individual, triage 0.01       J=2.9158 tests=0.834 sens=0.877 spec=0.9920
+  best Dorfman, pools of 2           J=3.4137 tests=0.671 sens=0.820 spec=0.9991
+  best risk-ordered Dorfman, triage 0.002 J=3.1122 tests=0.431 sens=0.826 spec=0.9980
