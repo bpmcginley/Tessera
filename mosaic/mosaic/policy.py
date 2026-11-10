@@ -241,7 +241,8 @@ class Tree:
         while True:
             nd = self.node(hist)
             if nd["a"] == 0:
-                return len(hist), nd["calls"], len(hist)
+                rounds = self.policy.rounds(self.cohort, hist) if hasattr(self.policy, "rounds") else len(hist)
+                return len(hist), nd["calls"], rounds
             mem = [i for i in range(self.cohort.n) if (nd["a"] >> i) & 1]
             inf = [loads[i] for i in mem if infected[i]]
             out = int(rng.random() < a.p_positive(inf, len(mem)))
@@ -295,3 +296,60 @@ class Rollout:
             if j < best_j - 1e-9:
                 best_j, best = j, c
         return best
+
+
+class Staged(Greedy):
+    """Few-round variant for slow assays.
+
+    Each round is planned up front from the belief at the start of the round:
+    disjoint pools covering every unresolved person, picked greedily by
+    information.  All of a round's pools can be run in parallel on the
+    instrument; results are only used to plan the next round."""
+
+    def __init__(self, *a, max_rounds=3, **k):
+        super().__init__(*a, **k)
+        self.max_rounds = max_rounds
+        self._plans = {}
+
+    def _belief(self, cohort, hist):
+        w = cohort.w0
+        if hist:
+            for row, (_, o) in zip(cohort.lik_pos([m for m, _ in hist]), hist):
+                w = w * (row if o else 1 - row)
+            w = w / w.sum() if w.sum() > 0 else cohort.w0
+        return w
+
+    def _plan(self, cohort, start):
+        key = (id(cohort), start)
+        if key not in self._plans:
+            w = self._belief(cohort, start)
+            marg = cohort.marginals(w)
+            self._se1 = cohort.assay.se1
+            U = self.unresolved(marg, cohort.catchable(w))
+            plan = []
+            while len(U):
+                C = self.candidates(cohort, marg, U)
+                ig, _ = cohort.info_gain(w, C)
+                s = _POP16[C]
+                c = int(C[int(np.argmax(ig / s ** 0.5 - self.size_penalty * s))])
+                plan.append(c)
+                U = np.array([i for i in U if not (c >> int(i)) & 1], dtype=int)
+            self._plans[key] = plan
+        return self._plans[key]
+
+    def _walk(self, cohort, hist):
+        start, r = (), 0
+        while True:
+            plan = self._plan(cohort, start) if r < self.max_rounds else []
+            if not plan:
+                return 0, r
+            k = len(hist) - len(start)
+            if k < len(plan):
+                return plan[k], r + 1
+            start, r = hist[: len(start) + len(plan)], r + 1
+
+    def act(self, cohort, w, hist=()):
+        return self._walk(cohort, hist)[0]
+
+    def rounds(self, cohort, hist):
+        return self._walk(cohort, hist)[1]

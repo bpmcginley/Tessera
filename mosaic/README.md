@@ -68,6 +68,28 @@ about half the cartridges, and uses 10–20% fewer than risk-ordered Dorfman
 where that method can reach the target. The 100% row relies on some repeat
 tests (see Limits).
 
+**Correction to read with that table.** The comparison only requires being as
+specific as individual testing (about 98%). MOSAIC uses that slack: it
+confirms fewer positives. Dorfman is naturally ~99.7% specific. If MOSAIC is
+held to the same high specificity (confident-positive threshold 0.9), it only
+**ties** risk-ordered Dorfman on this assay (0.405 tests at 84.1% sensitivity
+vs 0.406 at 83.9%; 0.474 at 85.7% vs 0.450 at 85.7%). The remaining advantage
+at high specificity is reach: sensitivity equal to individual testing at 0.73
+tests per person, which Dorfman cannot attain. See `results/rounds_tb_ultra_fit.log`.
+
+### Few-round version and risk-score safeguard (fitted TB assay)
+
+- **Few rounds** (`Staged` in `mosaic/policy.py`): plans each round's pools up
+  front so they can run in parallel. With at most 2 rounds it needs 0.45 tests
+  per person at 85.2% sensitivity -- the same as risk-ordered Dorfman (0.45 at
+  85.7%). So in the few-round regime there is **no gain** over the existing
+  method; MOSAIC's edge needs sequential testing.
+- **Safeguard**: flattening the reported risk toward the average (slope 0.6)
+  before use keeps sensitivity within 84–87% under every miscalibration tested
+  (78–90% without it), at the price of ~16% more tests when the score was
+  actually fine. With the safeguard on, MOSAIC and risk-ordered Dorfman perform
+  the same. See `results/robustness_tb_ultra_fit*.json`.
+
 ### What did *not* work (kept on purpose)
 
 - **No risk information + strong dilution: no gain.** When sensitivity is capped
@@ -86,8 +108,8 @@ tests (see Limits).
   data, and should be deliberately flattened if in doubt (costs tests, protects
   sensitivity). See `results/robustness_*.json`.
 - **Many rounds.** Tests are chosen one at a time; the TB operating point needs
-  about 5 sequential tests per cohort on average. Slow assays need a batched
-  variant, which is not built yet.
+  4–5 sequential tests per cohort on average. The batched variant exists but
+  gives up the advantage (see above).
 
 ## Recursive improvement (the version that works)
 
@@ -183,6 +205,5 @@ N=200000 python experiments/evolve.py community   # improvement loop (~30 min)
 ## Next steps that would matter
 
 1. Fit to individual-level pooled-assay data (only two summary numbers are used so far).
-2. Batched (few-round) policy for slow assays.
-3. Built-in safeguards against miscalibrated risk scores.
+2. A batched policy that keeps the sequential advantage (the current one does not).
 4. A wet-lab pilot on stored samples with known results.
