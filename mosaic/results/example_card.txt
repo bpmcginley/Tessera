@@ -1,0 +1,36 @@
+Cohort of 10 samples (ABCDEFGHIJ), prior risk each 0.02
+Test pool ABCDEFGHIJ
+- if NEGATIVE (83%):
+    STOP. Report positive: none; all others negative.
+- if POSITIVE (17%):
+    Test pool ABEF
+    - if NEGATIVE (60%):
+        Test pool CDJ
+        - if NEGATIVE (54%):
+            Test pool HI
+            - if NEGATIVE (45%):
+                (rare branch, 2.44% of cohorts: continue with the software)
+            - if POSITIVE (55%):
+                (rare branch, 3.01% of cohorts: continue with the software)
+        - if POSITIVE (46%):
+            Test sample D
+            - if NEGATIVE (67%):
+                (rare branch, 3.16% of cohorts: continue with the software)
+            - if POSITIVE (33%):
+                (rare branch, 1.56% of cohorts: continue with the software)
+    - if POSITIVE (40%):
+        Test pool AB
+        - if NEGATIVE (51%):
+            Test sample F
+            - if NEGATIVE (53%):
+                (rare branch, 1.83% of cohorts: continue with the software)
+            - if POSITIVE (47%):
+                (rare branch, 1.61% of cohorts: continue with the software)
+        - if POSITIVE (49%):
+            Test sample A
+            - if NEGATIVE (51%):
+                (rare branch, 1.68% of cohorts: continue with the software)
+            - if POSITIVE (49%):
+                (rare branch, 1.61% of cohorts: continue with the software)
+
+Model-expected: 0.186 tests/person, sensitivity 0.910, specificity 0.9999
