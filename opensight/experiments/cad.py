@@ -25,7 +25,7 @@ def prism(srf, dz):
 outline = cq.Workplane("XY").workplane(offset=-15).ellipse(AX, AY).extrude(30).val()
 s = p.surfaces
 front = prism(s[1], -12).intersect(outline).intersect(cq.Workplane("XY").workplane(offset=s[0].z0).rect(80, 80).extrude(20).val())
-rear = prism(s[2], 12).intersect(prism(s[3], -12)).intersect(outline)
+rear = prism(s[2], 12).intersect(outline).intersect(prism(s[3], -12).intersect(outline))
 out = {}
 for name, body in (("front_plate", front), ("rear_plate", rear)):
     cq.exporters.export(cq.Workplane(obj=body), f"cad/{name}.step")
