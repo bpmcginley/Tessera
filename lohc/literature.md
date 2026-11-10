@@ -1,0 +1,144 @@
+# LOHC literature data (calibration and novelty check)
+
+Compiled 2026-11-10 by web search only.
+
+**Read this first.** In this session every publisher page was unreachable (link.springer.com, www.mdpi.com, pubs.rsc.org, www.ncbi.nlm.nih.gov, kpfu.ru are outside the allowed network domains). All numbers below were therefore taken from **search-result excerpts** of the cited pages, not from reading the full text or tables. The URL given is the page the excerpt came from. Treat every value as "to be confirmed against the primary table" before it is used as a calibration point; Section 4 ranks how solid each one is.
+
+Conventions:
+- ΔH is the dehydrogenation enthalpy per mole H2 (positive). Where a source gives the hydrogenation value (negative), the sign is flipped.
+- "liq" = liquid-phase reaction enthalpy at 298 K; "gas" = gas phase; "phase n/s" = the excerpt did not state the phase.
+- wt% H2 = mass of H2 released / mass of the hydrogen-rich form. Values marked "(formula)" are simple formula-weight arithmetic done here, not literature values; values marked "(lit.)" carry a URL.
+- 1 kcal = 4.184 kJ was used for unit conversion.
+
+## 1. Dehydrogenation enthalpies of established LOHC pairs
+
+| # | Lean molecule | Lean SMILES | n H2 | wt% H2 | ΔH dehydrogenation, kJ/mol H2 | Source |
+|---|---|---|---|---|---|---|
+| 1 | Benzene (rich: cyclohexane) | `c1ccccc1` | 3 | 7.19 (formula) | **68.7** exp. (quoted as −16.42 kcal/mol H2, phase n/s, in Pez patent); 68.5 liq? (benchmark quoted by Verevkin, phase n/s); 68.8 (patent); 69 (review). Range 68.5–69 | Pez et al., US 7,101,530, https://patents.google.com/patent/US7101530B2/en ; Verevkin et al., Hydrogen 2021, https://doi.org/10.3390/hydrogen2010006 ; https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12209018 ; Cashel et al., Angew. Chem. 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC12087849/ |
+| 2 | Toluene (rich: methylcyclohexane) | `Cc1ccccc1` | 3 | 6.16 (lit.) | **68.3** (phase n/s; most-quoted). Outliers in reviews: 71.8 and 59.4 (unsure, probably different phase/temperature or error). Range 59.4–71.8 | J. Matthey Technol. Rev. 2022, https://www.ingentaconnect.com/contentone/matthey/jmtr/2022/00000066/00000003/art00006 ; 71.8: https://www.mdpi.com/2073-4344/12/10/1260 ; 59.4: Top. Catal. 2021, https://link.springer.com/article/10.1007/s11244-021-01452-x ; wt%: https://encyclopedia.pub/entry/3331 |
+| 3 | Naphthalene (rich: decalin) | `c1ccc2ccccc2c1` | 5 | 7.29 (formula); 7.2–7.3 (lit.) | **66.3** (decalin isomer and phase not specified in the original reference); 63.9 (review); ~59.5 (other sources); high-level-ish computed, trans-decalin: 71.3 (Pez, −17.03 kcal/mol H2, gas, method overbinds, see row 1 note); DFT trans-decalin 63.35. cis-Decalin is lower than trans. Range 59.5–66.3 exp. | Tang et al., IJHE 2020 (arXiv), https://arxiv.org/pdf/2310.15510 ; https://www.researchgate.net/publication/222248754 ; https://patents.google.com/patent/US7101530B2/en |
+| 4 | Biphenyl (rich: bicyclohexyl) | `c1ccc(cc1)-c1ccccc1` | 6 | 7.27 (formula); 7.3 (lit.) | **65.4** (unsure: excerpt of a Verevkin-group thermodynamic study quoting earlier literature; phase n/s; same number as row 5, possible mix-up) | https://www.researchgate.net/publication/367066940 ; https://www.sciencedirect.com/science/article/abs/pii/S0021961421000707 |
+| 5 | Dibenzyltoluene, isomer mixture (Marlotherm SH) (rich: perhydro-DBT, H18-DBT) | e.g. `Cc1ccc(Cc2ccccc2)cc1Cc1ccccc1` (one isomer) | 9 | 6.24 (formula) | **65.4** exp. (combustion calorimetry + vaporisation; 298.15 K; liquid-phase label not visible in excerpt but the paper's method is liquid-phase). Also quoted as "65" | Müller et al., Ind. Eng. Chem. Res. 2015, 54, 7967, https://pubs.acs.org/doi/10.1021/acs.iecr.5b01840 ; https://cris.fau.de/publications/115150904/ |
+| 6 | Benzyltoluene, isomer mixture (Marlotherm LH) (rich: perhydro-BT, H12-BT) | e.g. `Cc1ccccc1Cc1ccccc1` (one isomer) | 6 | 6.22 (formula) | **63.5** exp. (same paper and method as row 5) | https://pubs.acs.org/doi/10.1021/acs.iecr.5b01840 |
+| 7 | Diphenylmethane (rich: dicyclohexylmethane) | `c1ccc(Cc2ccccc2)cc1` | 6 | 6.7 (lit.) | 65.4 from one data set; a second data set gives 153.4, which the authors themselves regard as questionable. Unsure | https://www.researchgate.net/publication/367066940 |
+| 8 | N-Ethylcarbazole (rich: perhydro-NEC, H12-NEC) | `CCn1c2ccccc2c2ccccc21` | 6 | 5.83 (formula); 5.79–5.8 (lit.) | **50.5 ± 0.8** exp. liq (Verevkin group, quoted in Müller 2015); 50.6; 53.2; "50–53"; 51; one outlier 43.2. Range 50–53 | https://pubs.acs.org/doi/10.1021/acs.iecr.5b01840 ; Verevkin et al. 2012, https://cris.fau.de/publications/115291704/ ; https://pmc.ncbi.nlm.nih.gov/articles/PMC10816534/ ; https://www.ingentaconnect.com/contentone/matthey/jmtr/2022/00000066/00000003/art00006 ; https://www.mdpi.com/2073-4344/10/6/648 |
+| 9 | Carbazole (rich: dodecahydrocarbazole) | `c1ccc2c(c1)[nH]c1ccccc12` | 6 | 6.75 (formula) | **not found** (measured in Stark et al. 2015; value not visible) | Stark et al., Ind. Eng. Chem. Res. 2015, https://cris.fau.de/publications/115152004 |
+| 10 | Indole (rich: octahydroindole) | `c1ccc2[nH]ccc2c1` | 4 | 6.44 (formula) | **53.7** liq (quoted in the 1-methylindole equilibrium paper); 54.3 ± 0.6 liq (325.7 ± 3.7 kJ/mol total; attribution between indole and 1-alkyl-indole unclear in excerpts). A gas-phase estimate of ~45.0 is also quoted (unsure of basis) | Vostrikov et al., AppliedChem 2023, https://www.mdpi.com/2673-9623/3/1/4 ; Konnova et al., Ind. Eng. Chem. Res. 2020, https://pubs.acs.org/doi/abs/10.1021/acs.iecr.0c04069 ; https://pdfs.semanticscholar.org/0ee1/f5d4280b7deb340a17172bc00d58d65891d8.pdf |
+| 11 | 1-Methylindole (N-methylindole) (rich: octahydro-1-methylindole) | `Cn1ccc2ccccc21` | 4 | 5.79 (formula); 5.76 (lit.) | **55.6** liq (equilibrium + thermochemistry study) | https://www.mdpi.com/2673-9623/3/1/4 |
+| 12 | 2-Methylindole (rich: octahydro-2-methylindole) | `Cc1cc2ccccc2[nH]1` | 4 | 5.76 (lit.) | ~55.2 (unsure: quoted from a secondary reference, phase n/s). Methylation of indole changes ΔH by at most 3.1 kJ/mol H2 for one methyl, 4.6 for 2,3-dimethyl | https://www.researchgate.net/publication/346669943 ; https://www.sciencedirect.com/science/article/abs/pii/S0360319916303159 ; https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10095710/ |
+| 13 | Quinoline (rich: decahydroquinoline) | `c1ccc2ncccc2c1` | 5 | 7.24 (formula); 7.1–7.2 (lit.) | **61.5** liq (−307.4 kJ/mol total; Verevkin 2021); 64.5 quoted elsewhere. Mono- and dimethylquinolines: 56–62 | Verevkin et al., Appl. Sci. 2021, 11, 11758, https://doi.org/10.3390/app112411758 ; https://www.mdpi.com/2073-4344/12/10/1260 |
+| 14 | 2-Methylquinoline (quinaldine) | `Cc1ccc2ccccc2n1` | 5 | 6.58 (formula) | individual value not found; class range 56–62 liq | Safronov et al. 2022, https://www.researchgate.net/publication/358806168 ; https://pmc.ncbi.nlm.nih.gov/articles/PMC12961470/ |
+| 15 | Pyridine (rich: piperidine) | `c1ccncc1` | 3 | 7.10 (formula) | individual value **not found**; pyridine and quinoline derivatives "generally between 60 and 65" liq | https://www.mdpi.com/2076-3417/11/24/11758 |
+| 16 | Pyrrole (rich: pyrrolidine) | `c1cc[nH]c1` | 2 | 5.67 (formula) | **not found** (computed in Clot/Eisenstein/Crabtree 2007, Table 1; value not visible) | https://pubs.rsc.org/en/Content/ArticleLanding/2007/CC/B705037B |
+| 17 | Pyrazine (rich: piperazine) | `c1cnccn1` | 3 | 7.02 (formula) | **59.7** (computed, G4-level, Verevkin; phase n/s, labelled computed) | Verevkin et al., Hydrogen 2021, 2, 101, https://doi.org/10.3390/hydrogen2010006 ; J. Chem. Thermodyn. 2021, https://www.sciencedirect.com/science/article/abs/pii/S0021961421000215 |
+| 18 | 2,5-Dimethylpyrazine (rich: 2,5-dimethylpiperazine) | `Cc1cnc(C)cn1` | 3 | 5.30 (formula) | ~48 (unsure; same table as row 17) | https://doi.org/10.3390/hydrogen2010006 ; Fujita et al., Angew. Chem. 2017, https://onlinelibrary.wiley.com/doi/10.1002/anie.201705452 |
+| 19 | Tetramethylpyrazine | `Cc1nc(C)c(C)nc1C` | 3 | 4.25 (formula) | 57.6 exp.; 57.9 computed (unsure; same table) | https://doi.org/10.3390/hydrogen2010006 |
+| 20 | Phenazine (rich: tetradecahydrophenazine) | `c1ccc2nc3ccccc3nc2c1` | 7 | 7.26 (formula) | **not found** | https://www.mdpi.com/2073-4344/12/10/1260/html |
+| 21 | 2,6-Dimethyl-1,5-naphthyridine (rich: 2,6-dimethyldecahydro-1,5-naphthyridine) | `Cc1ccc2nc(C)ccc2n1` | 5 | 5.94–6.0 (lit.) | **not found** | Fujita et al., JACS 2014, https://pubs.acs.org/doi/10.1021/ja5001888 |
+| 22 | 1,2-Dihydro-1,2-azaborine (BN-benzene) (rich: 1,2-BN-cyclohexane) | `B1NC=CC=C1` | 3 | 7.1 (lit.) | per-H2 ΔH **not found**; described as near thermoneutral overall (ΔG ≈ 0 kcal/mol, computed) | Campbell et al., JACS 2010, 132, 3289, https://www.researchgate.net/publication/41847646 ; https://www.osti.gov/servlets/purl/1221989 |
+| 23 | Imidazole (rich: imidazolidine) | `c1c[nH]cn1` | 2 | 5.59 (formula) | **not found** (in Clot 2007 Table 1; value not visible) | https://pubs.rsc.org/en/Content/ArticleLanding/2007/CC/B705037B |
+| 24 | Acridine (rich: perhydroacridine) | `c1ccc2nc3ccccc3cc2c1` | 7 | 7.30 (formula) | **not found** | https://link.springer.com/article/10.1007/s12210-025-01389-3 |
+| 25 | Dibenzofuran (rich: perhydrodibenzofuran) | `c1ccc2c(c1)oc1ccccc12` | 6 | 6.71 (formula) | 64.6 computed (Pez, −15.45 kcal/mol H2; method overbinds). ΔG(500 K) = 36.6 kJ/mol (Verevkin 2025; basis per H2 or per reaction not clear) | https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7101530 ; https://www.preprints.org/manuscript/202507.0007/v1 |
+
+Notes on calibration use
+- Best-anchored points (experimental combustion calorimetry, one consistent group): rows 5, 6, 8, 10, 11, 13, plus benzene (row 1).
+- The Pez/Air Products quantum-chemistry level gives benzene −18.16 kcal/mol H2 calculated against −16.42 experimental, i.e. it overestimates by about 7 kJ/mol H2; expect a similar systematic offset for uncorrected DFT (https://patents.google.com/patent/US7101530B2/en).
+- Clot/Eisenstein/Crabtree report that B3PW91 enthalpies correlate with available experiment with r = 0.9985 (https://www.researchgate.net/profile/Eric-Clot/publication/6300571).
+- A ready-made benchmark exists: Harb et al. compare experimental, G4MP2 and G4 values for 14 known LOHC molecules (Table 1) and note that deviations above 20 kJ/mol may reflect errors in the experimental references (https://www.nature.com/articles/s41597-025-04468-0). A functional benchmark for hydrogenation energies is at https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12670397/ (ideal window quoted there: 9.6–16.7 kcal/mol H2).
+- Gas-phase and liquid-phase reaction enthalpies differ by the vaporisation-enthalpy difference of lean and rich forms; for indole the excerpts show ~45 (gas estimate) against ~54 (liquid). Compare like with like.
+
+## 2. N- and O-heterocyclic LOHC candidates already in the literature
+
+### 2a. Individual systems (SMILES are the lean form)
+
+| Lean molecule | SMILES | Note | Source |
+|---|---|---|---|
+| N-Ethylcarbazole | `CCn1c2ccccc2c2ccccc21` | Reference N-heterocyclic LOHC; ~50.5 kJ/mol H2; lean form melts at about 70 °C; dealkylation at high temperature | https://pubs.acs.org/doi/10.1021/acs.iecr.5b01840 ; https://www.sciencedirect.com/science/article/pii/S2590174525006257 |
+| Carbazole; N-methyl-, N-propyl-, N-isopropyl-, N-butyl-carbazole | `CCCn1c2ccccc2c2ccccc21` (N-propyl) | Thermochemistry measured; eutectic N-alkylcarbazole mixtures used to lower melting point (ternary eutectic predicted at 12.6 °C) | Emel'yanenko et al., J. Phys. Chem. C 2015, https://www.researchgate.net/publication/283683834 ; https://www.sciencedirect.com/science/article/abs/pii/S0360319918313740 |
+| N-Phenylcarbazole | `c1ccc(cc1)-n1c2ccccc2c2ccccc21` | Thermochemical and computational study | https://www.sciencedirect.com/science/article/abs/pii/S0021961418308711 |
+| Indole | `c1ccc2[nH]ccc2c1` | 53.7 kJ/mol H2 liq; six-ring step costs more than the N five-ring step; indoline only in traces | https://www.mdpi.com/2673-9623/3/1/4 |
+| 1-Methylindole, 1-alkylindoles | `Cn1ccc2ccccc21` | 55.6 kJ/mol H2 liq; 5.76 wt% | https://www.mdpi.com/2673-9623/3/1/4 ; https://www.sciencedirect.com/science/article/abs/pii/S0016236123006920 |
+| 2-Methylindole | `Cc1cc2ccccc2[nH]1` | 5.76 wt%; b.p. 273 °C; dehydrogenation complete in 4 h at 180 °C over Pd/Al2O3 | https://www.sciencedirect.com/science/article/abs/pii/S0360319916303159 |
+| 3-Methyl-, 2,3-dimethyl- and other methylindoles; 2-phenylindole | `Cc1[nH]c2ccccc2c1C` (2,3-dimethyl) | Methylation lowers ΔH by up to 4.6 kJ/mol H2; phenyl-substituted one only partly dehydrogenates under mild conditions | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10095710/ ; https://juser.fz-juelich.de/record/912089/files/Comprehensive%20thermodynamic%20study%20of%20substituted%20indoles%20perhydro%20indoles%20.pdf |
+| 7-Ethylindole | `CCc1cccc2cc[nH]c12` | 5.23 wt% | https://www.researchgate.net/publication/275060476 |
+| 6,7-Benzindole (1H-benzo[g]indole) | `c1ccc2c(c1)ccc1cc[nH]c12` | ΔH about 11 kJ/mol H2 below perhydro-dibenzyltoluene | https://www.sciencedirect.com/science/article/abs/pii/S0016236122012613 |
+| Quinoline, 2-methylquinoline, 8-methylquinoline, other alkylquinolines | `c1ccc2ncccc2c1` | 56–62 kJ/mol H2 liq; up to 7–8 wt% claimed for the class | https://doi.org/10.3390/app112411758 ; https://pubs.acs.org/doi/abs/10.1021/je049595u |
+| Pyridine and alkylpyridines; substituted piperidines (4-amino, 4-carboxamide, 4-dimethylamino) | `c1ccncc1`, `Nc1ccncc1`, `NC(=O)c1ccncc1` | 60–65 kJ/mol H2 for pyridines; donor/conjugating 4-substituents speed up dehydrogenation; side reactions (see Section 3) | https://www.mdpi.com/2076-3417/11/24/11758 ; Cui et al. (Jessop), New J. Chem. 2008, https://pubs.rsc.org/en/content/articlelanding/2008/nj/b718209k |
+| Pyrazine, alkylpyrazines, quinoxaline | `c1cnccn1`, `c1ccc2nccnc2c1` | Pyrazine 59.7 computed; 2,5-dimethylpyrazine cycled reversibly 4 times with a homogeneous Ir catalyst | https://doi.org/10.3390/hydrogen2010006 ; https://onlinelibrary.wiley.com/doi/10.1002/anie.201705452 |
+| 2,6-Dimethyl-1,5-naphthyridine | `Cc1ccc2nc(C)ccc2n1` | 5 H2, about 6.0 wt%, homogeneous Ir bipyridonate catalyst | https://pubs.acs.org/doi/10.1021/ja5001888 |
+| Phenazine | `c1ccc2nc3ccccc3nc2c1` | Cycled over Pd2Ru@SiCN at 190 °C; both forms are solids at operating temperature | https://www.mdpi.com/2073-4344/12/10/1260/html |
+| Acridine | `c1ccc2nc3ccccc3cc2c1` | Named as candidate in reviews; no enthalpy found | https://link.springer.com/article/10.1007/s12210-025-01389-3 |
+| Pyrrole, imidazole and other small azoles; aminated rings | `c1cc[nH]c1`, `c1c[nH]cn1` | Computational only (Clot 2007): 5-rings and 1,3-N placement give lowest release temperatures | https://pubs.rsc.org/en/Content/ArticleLanding/2007/CC/B705037B |
+| 1,2-Dihydro-1,2-azaborine; BN-methylcyclopentane (3-methyl-1,2-BN-cyclopentane) | `B1NC=CC=C1` | 7.1 wt% (azaborine); BN-methylcyclopentane is an air-stable liquid releasing 2 equiv. H2 to a borazine trimer; regeneration is not a simple H2 addition | https://www.researchgate.net/publication/41847646 ; https://www.researchgate.net/publication/230884450 ; https://www.osti.gov/servlets/purl/1221989 |
+| Trisphaeridine, norbelladine (Amaryllidaceae alkaloids) | `c1ccc2c(c1)ncc1cc3OCOc3cc12` (trisphaeridine; SMILES written from memory, verify) | Computed ~54 kJ/mol H2, ~5.9 wt% | https://arxiv.org/abs/2310.15510 |
+| Dibenzofuran and low-melting derivatives | `c1ccc2c(c1)oc1ccccc12` | Most favourable of the aromatic ethers/lactones studied; hydrogenation gives 86% perhydrodibenzofuran plus 14% C–O-cleaved product; dehydrogenation gives mixtures | https://www.preprints.org/manuscript/202507.0007/v1 |
+| Diphenyl ether (eutectic with biphenyl), methoxybiphenyls, aromatic lactones | `c1ccc(Oc2ccccc2)cc1` | Eutectic 6.8 wt%; oxygen functionality gives little thermodynamic gain; lactones unattractive | https://www.sciencedirect.com/science/article/abs/pii/S2095495619303249 ; https://doi.org/10.3390/hydrogen4040052 |
+| 4-Alkoxyindoles, 4-aminoindoles | n/a | C–O and C–N cleavage during cycling | https://pubs.rsc.org/en/content/articlelanding/2008/nj/b718209k |
+| 2-Methylthiophene (S-heterocycle, for completeness) | `Cc1cccs1` | Hydrogenation studied for storage | https://www.researchgate.net/publication/257324288 |
+| Non-ring-hydrogenation carriers (out of scope but often hit in searches): nitrile/amine couples, ethylene glycol, methanol + ethylenediamine / ethylene urea, amide (peptide) formation | n/a | Different chemistry (acceptorless dehydrogenative coupling) | https://www.researchgate.net/publication/260843060 ; https://www.nature.com/articles/s41929-019-0265-z ; https://www.nature.com/articles/ncomms7859 |
+
+Recalled from memory, no source retrieved in this session (treat as leads only, no numbers given): 1,2-dimethylindole, N-ethylindole, N-propylcarbazole hydrogenation kinetics papers from the Cheng group; 2-(N-methylbenzyl)pyridine; 1,10-phenanthroline and indolo-carbazoles in the Air Products patents; 4,4'-bipyridine; gamma-butyrolactone/1,4-butanediol.
+
+### 2b. Screening studies
+
+| Study | Space and size | Method and criteria | Outcome | Source |
+|---|---|---|---|---|
+| Pez, Scott, Cooper, Cheng (Air Products), US 7,101,530 / 7,351,395 / 7,429,372 | Extended pi-conjugated substrates: large PAHs, N-heterocycles (carbazoles and others), O-heterocycles (dibenzofuran), B/N systems; size not found (tens of structures) | Quantum-chemical hydrogenation enthalpies; target calculated −8 to −15.6 kcal/mol H2 (33–65 kJ), experimental modulus below about 15.0 kcal/mol H2 (63 kJ) | Introduced N-ethylcarbazole; found that large fused aromatics and N-substitution lower ΔH | https://patents.google.com/patent/US7101530 ; https://patents.google.com/patent/US7429372 |
+| Clot, Eisenstein, Crabtree, Chem. Commun. 2007, 2231; Crabtree, Energy Environ. Sci. 2008, 1, 134 | Small 5- and 6-membered N-heterocycles and N-substituted rings; size not found (a few dozen in Table 1) | DFT B3PW91; ΔH and release temperature Td | Td spans about 50 K to about 1000 K; 5-rings beat 6-rings; N in ring or as substituent helps, especially 1,3 | https://pubs.rsc.org/en/Content/ArticleLanding/2007/CC/B705037B ; https://pubs.rsc.org/en/content/articlepdf/2008/ee/b805644g |
+| Cui, Kwok, Bucholtz, Davis, Whitney, Jessop, New J. Chem. 2008, 32, 1027 | Substituted piperidines and octahydroindoles; size not found | Gaussian calculations plus experiments | Electron-donating/conjugating substituents lower ΔH (linear with Hammett parameter) and raise rate; side reactions catalogued | https://pubs.rsc.org/en/content/articlelanding/2008/nj/b718209k |
+| Müller / Verevkin / Wasserscheid / Arlt group (2012 to 2025) | Systematic experimental thermochemistry, class by class: carbazoles, benzyl- and dibenzyltoluenes, indoles, quinolines, pyridines, pyrazines, quinoxalines, anilines, alkylcyclohexanes, biphenyls, ethers, lactones; dozens of compounds per paper | Combustion calorimetry, transpiration, G3MP2/G4 | Consistent liquid-phase reaction enthalpies; the best calibration set | https://doi.org/10.3390/hydrogen2010006 ; https://pubs.acs.org/doi/10.1021/acs.iecr.5b01840 |
+| Paragian, Li, Massino, Rangarajan, Mol. Syst. Des. Eng. 2020, 5, 1658 | Over 1 million PubChem molecules with fewer than 14 heavy atoms as seeds | Data-driven property models plus reaction-network generation; filters on melting point, boiling point, ΔH, wt% H2, synthetic accessibility | Final count conflicting in secondary sources: 65 candidates narrowed further, or 37 (unsure) | https://pubs.rsc.org/en/content/articlelanding/2020/me/d0me00105h ; https://www.researchgate.net/publication/345454330 |
+| Harb et al. (Argonne), Digital Discovery 2023 | ZINC15 (about 1.2 billion) and GDB-17 (about 166 billion) screened by structural similarity to known LOHCs | Similarity search, "dehydrogenation index" heuristic, then quantum chemistry; > 5.5 wt%, liquid at room temperature, ΔH 40–70 kJ/mol H2 | 41 new candidates (5 from ZINC15, 36 from GDB-17) | https://www.sciencedirect.com/org/science/article/pii/S2635098X23001304 ; https://www.osti.gov/pages/biblio/2009005 |
+| Harb et al., Sci. Data 2025, 12, 171 (QM9-LOHC) | 10,373 reactions, 9,841 molecules, up to 9 heavy atoms (C, N, O, F), at least 5.5 wt% | G4MP2 enthalpies | About 3,040 reactions fall in the 40–70 kJ/mol H2 window; dataset on GitHub (HydrogenStorage/QM9-LOHC) and Zenodo | https://www.nature.com/articles/s41597-025-04468-0 ; https://www.mdpi.com/2673-4141/7/4/144 |
+| "Discovery of hydrogen storage molecules using large language models and machine learning", Digital Discovery 2026, 5, 2089 | LLM- and diffusion-generated molecules, ML screening | ΔH 40–70 kJ/mol H2, m.p. at most 40 °C, at least 5.5 wt%, SA score at most 3.3; G4MP2 validation | 42 new candidates, 39 validated | https://pubs.rsc.org/dd/article/5/5/2089/1241792/Discovery-of-hydrogen-storage-molecules-using |
+| Cheng, Jiang, Zhou, Energy & Fuels 2026, 40, 15565 | not found | Computational screening | not found | https://pubs.acs.org/enfuem/article-abstract/40/28/15565/5203346/Accelerated-Discovery-of-Liquid-Organic-Hydrogen |
+| Method benchmark, J. Phys. Chem. A 2025, 129, 11003 | Candidate hydrogen-storage molecules | Comparison of electronic-structure methods for hydrogenation energies | Use to choose a functional | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12670397/ |
+
+Novelty-check implication: small molecules (up to 9 heavy atoms, C/N/O/F) are exhaustively covered by QM9-LOHC, and anything similar to known LOHCs in ZINC15/GDB-17 has been screened. Check any hit against those two datasets and the Verevkin compound classes before claiming novelty.
+
+## 3. What makes a good LOHC
+
+Enthalpy window (kJ/mol H2)
+- Most-used screening window: 40–70 (https://www.sciencedirect.com/org/science/article/pii/S2635098X23001304 ; https://pubs.rsc.org/dd/article/5/5/2089/1241792/Discovery-of-hydrogen-storage-molecules-using). Reason: too high means high release temperature and heat demand; too low means the rich form is unstable and hydrogenation needs very high pressure.
+- Stricter targets: US DOE 30–44 at 1 bar and 40–60 °C (https://www.sciencedirect.com/science/article/pii/S2590174525006257); "not higher than 40" as the theoretical ideal (https://www.sciencedirect.com/science/article/abs/pii/S0021961421000215); about 40 optimal (https://gepris.dfg.de/gepris/projekt/536748292); at most 65 proposed in a 2025 review (https://www.researchgate.net/publication/398786429).
+- Air Products: calculated 33–65 (−8 to −15.6 kcal/mol H2); experimental below about 63 (https://patents.google.com/patent/US7101530).
+- Reality: classic homocyclic carriers sit at 62–70 (wt% 6.1–7.3) and release at 250–320 °C; N-heterocycles sit at 50–62 (https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cctc.202401278 ; https://www.sciencedirect.com/science/article/pii/S2590174525006257).
+
+Capacity
+- Gravimetric: above 6 wt% for the carrier (at least 5 wt% at system level); DOE-aligned screens use at least 5.5 wt% (https://pmc.ncbi.nlm.nih.gov/articles/PMC13464421/ ; https://www.nature.com/articles/s41597-025-04468-0).
+- Volumetric: above 56 kg H2/m3 (https://pmc.ncbi.nlm.nih.gov/articles/PMC13464421/); DOE 2017 mobile figure 40 g/L (https://encyclopedia.pub/entry/3331). Toluene/MCH reaches 47.4 kg H2/m3 (https://encyclopedia.pub/entry/3331).
+
+Phase behaviour
+- Melting point: ideally below −30 °C for both forms (https://encyclopedia.pub/entry/3331); looser targets below 30 °C or at most 40 °C are used in screens (https://pmc.ncbi.nlm.nih.gov/articles/PMC13464421/ ; https://pubs.rsc.org/dd/article/5/5/2089/1241792/Discovery-of-hydrogen-storage-molecules-using). Solid carriers need solvent, which cuts capacity (decalin/naphthalene falls to 3.8 wt% in toluene, https://mdpi.com/1996-1944/16/10/3735). Known offenders: N-ethylcarbazole (about 70 °C), phenazine (both forms solid), biphenyl (fixed by a 35:65 eutectic with diphenylmethane) (https://www.researchgate.net/publication/320559878).
+- Boiling point: above 300 °C preferred so the H2 stream stays clean (https://pmc.ncbi.nlm.nih.gov/articles/PMC13464421/).
+
+Stability and catalyst issues
+- N-alkyl carbazoles dealkylate at dehydrogenation temperature (https://www.stet-review.org/articles/stet/full_html/2023/01/stet20230038/stet20230038.html).
+- Exocyclic heteroatom substituents are fragile: alkyl transfer with 4-dimethylaminopiperidine, C–O and C–N cleavage with 4-alkoxy and 4-amino indoles, disproportionation of 4-aminopyridine (https://pubs.rsc.org/en/content/articlelanding/2008/nj/b718209k).
+- Ring C–O cleavage: dibenzofuran hydrogenation gives 14% deoxygenated product (https://www.preprints.org/manuscript/202507.0007/v1).
+- Benzyl-bridged carriers form methylfluorene irreversibly; it accumulates over cycles and depends on catalyst support (https://pubs.acs.org/doi/10.1021/acsengineeringau.4c00003).
+- Catalysts deactivate by strong adsorption of the dehydrogenated (aromatic, N-containing) product (https://www.stet-review.org/articles/stet/full_html/2023/01/stet20230038/stet20230038.html).
+- Toxicity rules out benzene; raised for N-ethylcarbazole too (https://www.sciencedirect.com/org/science/article/pii/S2635098X23001304).
+
+Rules of thumb
+- Ring N lowers ΔH; the effect depends on number, position and ring size (https://pmc.ncbi.nlm.nih.gov/articles/PMC10220885/).
+- Five-membered rings release H2 more easily than six-membered; N at 1,3 positions is best; N as ring atom or as substituent both help (https://pubs.rsc.org/en/Content/ArticleLanding/2007/CC/B705037B).
+- In indoles the carbocyclic six-ring step costs clearly more than the N-containing five-ring step (https://elmi.hbku.edu.qa/en/publications/thermodynamics-of-hydrogen-storage-equilibrium-study-of-the-lohc-/).
+- Electron-donating substituents lower ΔH (https://www.sciencedirect.com/science/article/pii/S2949720523000176).
+- Methylation is a small lever: at most 3.1 kJ/mol H2 for one methyl on indole, 4.6 for two; up to 7.3 spread in a single step (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10095710/). Steric crowding in alkylbenzenes helps only weakly (https://cris.fau.de/publications/288794158).
+- N-alkylation of indole barely moves ΔH (53.7 to 55.6, within uncertainty) but improves liquid range (https://www.mdpi.com/2673-9623/3/1/4).
+- Oxygen functionality gives little thermodynamic benefit (https://doi.org/10.3390/hydrogen4040052).
+- Larger fused aromatics have lower ΔH per H2 (https://patents.google.com/patent/US7101530).
+- In multi-ring carriers the first ring hydrogenates more exothermically than the second, and the less substituted ring more than the more substituted one (https://cris.fau.de/publications/287253197/).
+
+## 4. Caveats
+
+1. No primary full text or table was read; all values are from search excerpts. Hosts that must be allowed to verify: link.springer.com, www.mdpi.com, pubs.rsc.org, www.ncbi.nlm.nih.gov, kpfu.ru (and probably pubs.acs.org, webbook.nist.gov).
+2. Values seen consistently in several independent excerpts (reasonably safe): benzene 68.5–69; toluene 68.3; dibenzyltoluene 65.4; benzyltoluene 63.5; N-ethylcarbazole 50.5 ± 0.8; quinoline 61.5; 1-methylindole 55.6; indole 53.7.
+3. Values seen in a single excerpt or with unclear attribution (verify before use): biphenyl 65.4; diphenylmethane 65.4/153.4; 2-methylindole 55.2; indole 54.3 ± 0.6 and gas ~45.0; pyrazine 59.7; 2,5-dimethylpyrazine ~48; tetramethylpyrazine 57.6/57.9; decahydroquinoline 64.5; naphthalene 66.3/63.9/59.5 (phase and decalin isomer unknown); toluene outliers 71.8 and 59.4; dibenzofuran values.
+4. Phase not confirmed from the source for rows 1–4 and 7; rows 5, 6, 8 are liquid-phase by the method described but the label was not visible.
+5. Not found at all: per-H2 enthalpies for carbazole, pyridine (individual), pyrrole, imidazole, phenazine, acridine, 2-methylquinoline (individual), 2,6-dimethyl-1,5-naphthyridine, 1,2-dihydro-1,2-azaborine. Standard gas-phase values for pyridine/piperidine, pyrrole/pyrrolidine, benzene, toluene and naphthalene/decalin can be derived from NIST WebBook formation enthalpies (https://webbook.nist.gov), which could not be opened here.
+6. Screening-study sizes: Paragian 2020 final candidate count is inconsistent (65 or 37); Pez, Clot and Jessop library sizes not found; Energy & Fuels 2026 details not found.
+7. wt% values marked "(formula)" are formula-weight arithmetic done here, not literature values.
+8. SMILES for dibenzyltoluene and benzyltoluene are single representative isomers of technical mixtures; trisphaeridine SMILES is from memory.
+9. Items listed as "recalled from memory" in Section 2a have no retrieved source.
