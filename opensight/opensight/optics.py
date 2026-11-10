@@ -118,17 +118,21 @@ def _pupil(radius, rings=3):
 PUP = _pupil(2.0)  # 4 mm pupil
 
 
-def power(surfaces, offsets, gaze=(0.0, 0.0), z_vertex=0.0, d_rot=27.0, n_wave=None):
+def power(surfaces, offsets, gaze=(0.0, 0.0), z_vertex=0.0, d_rot=27.0, n_wave=None, decenter=(0.0, 0.0), tilt_deg=(0.0, 0.0)):
     """Power the eye receives along a direction of gaze (degrees, about the eye's
     centre of rotation d_rot mm behind the back vertex).
 
     Returns dict(M, J0, J45 in dioptres, hoa = residual ray-angle RMS in arcmin,
-    prism in prism dioptres).  Method: reverse-trace the chief ray from the
+    prism in prism dioptres).  decenter: sideways/vertical offset (mm) of the eye
+    from the lens centre.  tilt_deg: (pantoscopic, wrap) tilt of the lens on the
+    face, modelled by rotating the eye about the lens vertex.  Method: reverse-trace the chief ray from the
     rotation centre, send a 4 mm bundle of parallel rays back along it, and fit
     the emerging wavefront's vergence matrix on the vertex sphere."""
     ax, ay = np.radians(gaze)
     g = np.array([np.sin(ax) * np.cos(ay), np.sin(ay), np.cos(ax) * np.cos(ay)])
-    C = np.array([0.0, 0.0, z_vertex + d_rot])
+    Rt = rot(np.radians(tilt_deg[1]), np.radians(tilt_deg[0]))
+    g = Rt @ g
+    C = np.array([decenter[0], decenter[1], z_vertex]) + Rt @ np.array([0.0, 0.0, d_rot])
     pc, dc = trace(C[None], -g[None], surfaces, offsets, reverse=True)
     u = -dc[0]
     e1 = np.cross([0, 1, 0], u); e1 /= np.linalg.norm(e1); e2 = np.cross(u, e1)

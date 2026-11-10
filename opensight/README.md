@@ -63,6 +63,50 @@ changes, re-dial.
 - Printed scales in dioptres on each screw; a drop of adhesive or a snap cap
   locks the setting.
 
+## Engineering pass (independent check, 3D models, mechanism, fit)
+
+**1. Independent optics check — passed.** The lens was rebuilt in Optiland, a
+third-party open-source optical design package, and the same rays were traced
+by both codes at eight slide/field settings. Exit directions agree to
+4 × 10⁻⁸ radians (about 0.01 arcsecond) and positions to 2 nanometres
+(`experiments/crosscheck.py`, `results/crosscheck.json`). This confirms the
+ray tracing itself. It does not independently confirm my way of turning rays
+into a blur number, or the eye geometry I assumed.
+
+**2. 3D models.** `cad/front_plate.step` and `cad/rear_plate.step` are solid
+models of the two plates with the freeform faces spline-fitted (3.1 g and
+3.4 g in polycarbonate, matching the optical model's 6.4 g).
+`cad/cell_layout.step` is a block-level layout of the cell.
+
+**3. Mechanism — feasible on estimates, with one real drawback.**
+
+- *Size:* to let 40 × 36 mm plates slide ±3 mm inside a rotating round cell,
+  the cell must be about **56 mm across for a 34 mm clear window**. Two cells
+  fit side by side on a typical face (eyes ~62 mm apart) with only about 6 mm
+  between them. It will look like thick-rimmed round goggles. A smaller window
+  or a non-rotating design would be needed to slim it.
+- *Accuracy:* a stack-up of estimated errors (thread pitch, backlash, scale
+  reading, seating, temperature) gives 0.08 mm of position error for sphere
+  and 0.07 mm for cylinder at the 95% level, about 0.06 D and 0.10 D. That
+  meets the optical requirement (0.05–0.1 mm) with no margin; reading the
+  scale is the largest contributor. The inputs are engineering estimates, not
+  measurements (`experiments/mechanism.py`).
+
+**4. Fit and range** (`results/fit_checks.json`), lens set once and not
+re-adjusted:
+
+- *Off-centre:* 2 mm off costs about 0.06 D on-axis; 4 mm costs 0.09–0.13 D
+  (worst prescription 0.24 D). So the frame needs a rough eye-spacing
+  adjustment, or the wearer re-tunes the screws.
+- *Tilt:* 5° of tilt is fine (0.07 D on-axis). At 10° the field-average blur
+  reaches 0.29 D, so the frame should hold the lenses close to upright, or the
+  shapes should be re-optimised for a tilted fit.
+- *Wider range:* the same plates give −8 to +5 D with field-average blur
+  under 0.15 D, but need ±4.3 mm of travel per plate, hence wider plates and a
+  bigger cell.
+- *Thinner:* reducing centre thickness from 2.2 to 1.9 mm changes the optics
+  by under 0.001 D and saves 0.8 g per eye (minimum wall 1.1 mm).
+
 ## Why this matters
 
 - Hundreds of millions of people lack glasses mainly because there is no one
@@ -136,12 +180,14 @@ Checks beyond the table:
 - `experiments/optimize.py` — shape optimisation (`WIDE=1` for the final design).
 - `experiments/report.py`, `experiments/tolerance.py`, `experiments/dispense.py` — the numbers above.
 - `results/setting_table.csv` — prescription-to-slide table for printing the scales.
+- `experiments/crosscheck.py`, `experiments/cad.py`, `experiments/mechanism.py`, `experiments/fit_checks.py` — the engineering pass.
+- `cad/*.step` — 3D models of the plates and the cell layout.
 - `results/design_A0.000635_gap1_wide.json` — the final design.
 - `results/plate_coefficients.json`, `results/*_sag_mm.csv` — plate shapes for a mould maker.
 - `tests/test_optics.py` — five checks, all passing.
 
 ```bash
-pip install numpy scipy matplotlib
+pip install numpy scipy matplotlib optiland cadquery
 cd opensight
 python tests/test_optics.py
 WIDE=1 python experiments/optimize.py 6.35e-4 1.0     # ~9 min
@@ -165,9 +211,8 @@ python experiments/tolerance.py results/design_A0.000635_gap1_wide.json 60
   trial.
 - **Comparison lenses are simplified** (parabolic surfaces, one curved form),
   not the best commercial lenses.
-- **Sideways fit not tested.** Distance from the eye and colour fringing are
-  now checked (see above); a lens sitting off-centre left/right or tilted on
-  the face is not.
+- **Bulk.** The rotating cell is about 56 mm across for a 34 mm window (see
+  the engineering pass). This may matter for acceptance more than the optics.
 - **Range and size.** Sphere −6 to +3 D, cylinder to 3 D, 34 mm round lenses.
   Stronger prescriptions and prism are not covered. Round lenses are needed
   for the rotating cell.

@@ -104,11 +104,11 @@ def conventional(F, front_D=None, n=N_PC, tc=1.5, cyl=0.0):
     return [Surface(0.0, Poly({(2, 0): c1, (0, 2): c1}), 1.0, n, 0), Surface(tc, Poly({(2, 0): c2, (0, 2): c2, (1, 1): -2 * j}), n, 1.0, 0)], tc
 
 
-def load(path):
+def load(path, t0=None):
     """Rebuild an optimised pair from a results/design_*.json file."""
     import json
     d = json.load(open(path))
     x = np.array(d["x"]) * np.array(d["scale"])
     ex = {tuple(k): v for k, v in zip(d["shared_terms"], x[1:1 + len(d["shared_terms"])])}
     ex2 = {tuple(k): v for k, v in zip(d["rear_terms"], x[1 + len(d["shared_terms"]):])}
-    return Pair(A=d["A"], tilt=d["tilt"], t0=d.get("t0", 2.2), base=-1.5, radius=d["radius"], freeform="inner", gap=d["gap"], mu=1.0 + x[0], extra=ex, extra2=ex2)
+    return Pair(A=d["A"], tilt=d["tilt"], t0=t0 or d.get("t0", 2.2), base=-1.5, radius=d["radius"], freeform="inner", gap=d["gap"], mu=1.0 + x[0], extra=ex, extra2=ex2)
