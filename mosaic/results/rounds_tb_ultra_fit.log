@@ -1,0 +1,24 @@
+sequential             R<=0 tau=0.03   tests=0.344 sens=0.803 spec=0.9980 rounds=3.02
+sequential             R<=0 tau=0.02   tests=0.405 sens=0.841 spec=0.9985 rounds=3.56
+sequential             R<=0 tau=0.012  tests=0.474 sens=0.857 spec=0.9981 rounds=4.16
+sequential             R<=0 tau=0.007  tests=0.561 sens=0.872 spec=0.9981 rounds=4.93
+sequential             R<=0 tau=0.004  tests=0.726 sens=0.879 spec=0.9985 rounds=6.37
+staged                 R<=2 tau=0.03   tests=0.393 sens=0.812 spec=0.9962 rounds=0.81
+staged                 R<=2 tau=0.02   tests=0.449 sens=0.852 spec=0.9956 rounds=0.96
+staged                 R<=2 tau=0.012  tests=0.509 sens=0.861 spec=0.9952 rounds=1.12
+staged                 R<=2 tau=0.007  tests=0.578 sens=0.863 spec=0.9960 rounds=1.28
+staged                 R<=2 tau=0.004  tests=0.731 sens=0.865 spec=0.9964 rounds=1.47
+staged                 R<=3 tau=0.03   tests=0.400 sens=0.815 spec=0.9971 rounds=0.84
+staged                 R<=3 tau=0.02   tests=0.460 sens=0.849 spec=0.9967 rounds=1.00
+staged                 R<=3 tau=0.012  tests=0.529 sens=0.865 spec=0.9966 rounds=1.19
+staged                 R<=3 tau=0.007  tests=0.601 sens=0.881 spec=0.9966 rounds=1.37
+staged                 R<=3 tau=0.004  tests=0.780 sens=0.884 spec=0.9970 rounds=1.64
+staged                 R<=4 tau=0.03   tests=0.401 sens=0.816 spec=0.9972 rounds=0.85
+staged                 R<=4 tau=0.02   tests=0.464 sens=0.848 spec=0.9967 rounds=1.03
+staged                 R<=4 tau=0.012  tests=0.534 sens=0.867 spec=0.9968 rounds=1.22
+staged                 R<=4 tau=0.007  tests=0.616 sens=0.875 spec=0.9972 rounds=1.43
+staged                 R<=4 tau=0.004  tests=0.799 sens=0.884 spec=0.9971 rounds=1.72
+risk-ordered Dorfman   R<=2 tau=0      tests=0.500 sens=0.869 spec=0.9967 rounds=2.00
+risk-ordered Dorfman   R<=2 tau=0.005  tests=0.479 sens=0.865 spec=0.9970 rounds=2.00
+risk-ordered Dorfman   R<=2 tau=0.01   tests=0.450 sens=0.857 spec=0.9966 rounds=2.00
+risk-ordered Dorfman   R<=2 tau=0.02   tests=0.406 sens=0.839 spec=0.9968 rounds=2.00

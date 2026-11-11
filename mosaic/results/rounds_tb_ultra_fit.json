@@ -1,0 +1,223 @@
+{
+ "scenario": "tb_ultra_fit",
+ "N": 40000,
+ "seed": 0,
+ "rows": [
+  {
+   "kind": "sequential",
+   "tau_neg": 0.03,
+   "max_rounds": 0,
+   "tests_pp": 0.3437,
+   "sens": 0.8025540275049116,
+   "spec": 0.9979681585393009,
+   "mean_rounds": 3.019547551065232
+  },
+  {
+   "kind": "sequential",
+   "tau_neg": 0.02,
+   "max_rounds": 0,
+   "tests_pp": 0.405325,
+   "sens": 0.8406188605108055,
+   "spec": 0.998524827432643,
+   "mean_rounds": 3.560948824950582
+  },
+  {
+   "kind": "sequential",
+   "tau_neg": 0.012,
+   "max_rounds": 0,
+   "tests_pp": 0.473825,
+   "sens": 0.8570726915520629,
+   "spec": 0.9980516588733022,
+   "mean_rounds": 4.162749835273446
+  },
+  {
+   "kind": "sequential",
+   "tau_neg": 0.007,
+   "max_rounds": 0,
+   "tests_pp": 0.561275,
+   "sens": 0.8720530451866405,
+   "spec": 0.9980794923179692,
+   "mean_rounds": 4.931034482758621
+  },
+  {
+   "kind": "sequential",
+   "tau_neg": 0.004,
+   "max_rounds": 0,
+   "tests_pp": 0.7256,
+   "sens": 0.8786836935166994,
+   "spec": 0.9984691605433088,
+   "mean_rounds": 6.374698001317812
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.03,
+   "max_rounds": 2,
+   "tests_pp": 0.3925,
+   "sens": 0.81237721021611,
+   "spec": 0.9962424849699398,
+   "mean_rounds": 0.8102350098835932
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.02,
+   "max_rounds": 2,
+   "tests_pp": 0.449125,
+   "sens": 0.8516699410609038,
+   "spec": 0.9955744822979292,
+   "mean_rounds": 0.9648583351636284
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.012,
+   "max_rounds": 2,
+   "tests_pp": 0.50925,
+   "sens": 0.8614931237721022,
+   "spec": 0.9952404809619239,
+   "mean_rounds": 1.1236547331429827
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.007,
+   "max_rounds": 2,
+   "tests_pp": 0.5781,
+   "sens": 0.8629666011787819,
+   "spec": 0.9959919839679359,
+   "mean_rounds": 1.2828904019327916
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.004,
+   "max_rounds": 2,
+   "tests_pp": 0.730575,
+   "sens": 0.8646856581532416,
+   "spec": 0.9963538187486083,
+   "mean_rounds": 1.4667252361080607
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.03,
+   "max_rounds": 3,
+   "tests_pp": 0.3998,
+   "sens": 0.8148330058939096,
+   "spec": 0.9971053217546203,
+   "mean_rounds": 0.8425214144520097
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.02,
+   "max_rounds": 3,
+   "tests_pp": 0.4604,
+   "sens": 0.8492141453831041,
+   "spec": 0.9966878200846137,
+   "mean_rounds": 1.0030748956731825
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.012,
+   "max_rounds": 3,
+   "tests_pp": 0.528575,
+   "sens": 0.8649312377210217,
+   "spec": 0.9965764863059452,
+   "mean_rounds": 1.1937184274104986
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.007,
+   "max_rounds": 3,
+   "tests_pp": 0.600775,
+   "sens": 0.881139489194499,
+   "spec": 0.9965764863059452,
+   "mean_rounds": 1.37162310564463
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.004,
+   "max_rounds": 3,
+   "tests_pp": 0.780325,
+   "sens": 0.8840864440078585,
+   "spec": 0.997021821420619,
+   "mean_rounds": 1.635844498133099
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.03,
+   "max_rounds": 4,
+   "tests_pp": 0.400825,
+   "sens": 0.8158153241650294,
+   "spec": 0.9972166555332888,
+   "mean_rounds": 0.8475730287722381
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.02,
+   "max_rounds": 4,
+   "tests_pp": 0.4635,
+   "sens": 0.8477406679764243,
+   "spec": 0.9967434869739479,
+   "mean_rounds": 1.02789369646387
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.012,
+   "max_rounds": 4,
+   "tests_pp": 0.534275,
+   "sens": 0.8668958742632613,
+   "spec": 0.9968269873079493,
+   "mean_rounds": 1.2200746760377772
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.007,
+   "max_rounds": 4,
+   "tests_pp": 0.6157,
+   "sens": 0.87450884086444,
+   "spec": 0.9972444889779559,
+   "mean_rounds": 1.4276301339775972
+  },
+  {
+   "kind": "staged",
+   "tau_neg": 0.004,
+   "max_rounds": 4,
+   "tests_pp": 0.798875,
+   "sens": 0.8835952848722987,
+   "spec": 0.9971053217546203,
+   "mean_rounds": 1.718207775093345
+  },
+  {
+   "kind": "risk-ordered Dorfman",
+   "tau_neg": 0,
+   "max_rounds": 2,
+   "tests_pp": 0.4999,
+   "sens": 0.868614931237721,
+   "spec": 0.9967434869739479,
+   "mean_rounds": 2.0
+  },
+  {
+   "kind": "risk-ordered Dorfman",
+   "tau_neg": 0.005,
+   "max_rounds": 2,
+   "tests_pp": 0.478775,
+   "sens": 0.8654223968565815,
+   "spec": 0.996993987975952,
+   "mean_rounds": 2.0
+  },
+  {
+   "kind": "risk-ordered Dorfman",
+   "tau_neg": 0.01,
+   "max_rounds": 2,
+   "tests_pp": 0.450325,
+   "sens": 0.856827111984283,
+   "spec": 0.9965764863059452,
+   "mean_rounds": 2.0
+  },
+  {
+   "kind": "risk-ordered Dorfman",
+   "tau_neg": 0.02,
+   "max_rounds": 2,
+   "tests_pp": 0.40565,
+   "sens": 0.8386542239685658,
+   "spec": 0.9967991538632821,
+   "mean_rounds": 2.0
+  }
+ ]
+}

@@ -1,0 +1,376 @@
+{
+ "validation": {
+  "rows": [
+   {
+    "name": "benzene",
+    "computed_gas": 66.1,
+    "literature": 68.7
+   },
+   {
+    "name": "toluene",
+    "computed_gas": 64.8,
+    "literature": 68.3
+   },
+   {
+    "name": "N-ethylcarbazole",
+    "computed_gas": 45.2,
+    "literature": 50.5
+   },
+   {
+    "name": "quinoline",
+    "computed_gas": 58.7,
+    "literature": 61.5
+   },
+   {
+    "name": "1-methylindole",
+    "computed_gas": 52.3,
+    "literature": 55.6
+   },
+   {
+    "name": "indole",
+    "computed_gas": 50.4,
+    "literature": 53.7
+   }
+  ],
+  "offset_added": 3.5,
+  "scatter_after_offset": 0.9
+ },
+ "fast_method_raw_error": {
+  "mean": 63.2,
+  "scatter": 3.6
+ },
+ "generations": [
+  {
+   "gen": 0,
+   "n_dft": 18,
+   "screened": null,
+   "model_error_on_new": null
+  },
+  {
+   "gen": 1,
+   "n_dft": 26,
+   "screened": 231,
+   "model_error_on_new": 1.8704508439998655
+  },
+  {
+   "gen": 2,
+   "n_dft": 34,
+   "screened": 316,
+   "model_error_on_new": 1.234964021929188
+  },
+  {
+   "gen": 3,
+   "n_dft": 42,
+   "screened": 371,
+   "model_error_on_new": 1.6925456043425768
+  },
+  {
+   "gen": 4,
+   "n_dft": 50,
+   "screened": 395,
+   "model_error_on_new": 1.0828202835562815
+  },
+  {
+   "gen": 5,
+   "n_dft": 58,
+   "screened": 431,
+   "model_error_on_new": 1.1223272959345305
+  }
+ ],
+ "n_dft": 58,
+ "n_screened": 431,
+ "n_in_window": 44,
+ "n_in_window_no_aminal": 23,
+ "top_in_window": [
+  {
+   "lean": "c1cnc2c(c1)ncc1ncccc12",
+   "rich": "C1CNC2C(C1)NCC1NCCCC12",
+   "n_H2": 7,
+   "wt_pct": 7.23,
+   "dH_gas_computed": 46.1,
+   "dH_liquid_estimate": 49.6,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cc2ccc3cncnc3c2cn1",
+   "rich": "C1CC2CCC3CNCNC3C2CN1",
+   "n_H2": 7,
+   "wt_pct": 7.23,
+   "dH_gas_computed": 46.4,
+   "dH_liquid_estimate": 49.8,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2c(c1)ccc1ncncc12",
+   "rich": "C1CNC2C(C1)CCC1NCNCC12",
+   "n_H2": 7,
+   "wt_pct": 7.23,
+   "dH_gas_computed": 45.6,
+   "dH_liquid_estimate": 49.0,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2cnc3cncnc3c2c1",
+   "rich": "C1CNC2CNC3CNCNC3C2C1",
+   "n_H2": 7,
+   "wt_pct": 7.19,
+   "dH_gas_computed": 45.9,
+   "dH_liquid_estimate": 49.4,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 4,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2c(c1)ncc1ncncc12",
+   "rich": "C1CNC2C(C1)NCC1NCNCC12",
+   "n_H2": 7,
+   "wt_pct": 7.19,
+   "dH_gas_computed": 48.4,
+   "dH_liquid_estimate": 51.9,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 4,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ncc2c(ccc3cncnc32)n1",
+   "rich": "C1NCC2C(CCC3CNCNC32)N1",
+   "n_H2": 7,
+   "wt_pct": 7.19,
+   "dH_gas_computed": 46.7,
+   "dH_liquid_estimate": 50.1,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 4,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ncc2c(cnc3cncnc32)n1",
+   "rich": "C1NCC2C(CNC3CNCNC32)N1",
+   "n_H2": 7,
+   "wt_pct": 7.15,
+   "dH_gas_computed": 46.9,
+   "dH_liquid_estimate": 50.3,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 5,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ncc2c(n1)ncc1cncnc12",
+   "rich": "C1NCC2C(N1)NCC1CNCNC12",
+   "n_H2": 7,
+   "wt_pct": 7.15,
+   "dH_gas_computed": 44.7,
+   "dH_liquid_estimate": 48.2,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": true,
+   "NH_groups_in_rich_form": 5,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ccc2c(c1)[nH]c1ccccc12",
+   "rich": "C1CCC2C(C1)NC1CCCCC12",
+   "n_H2": 6,
+   "wt_pct": 6.75,
+   "dH_gas_computed": 46.9,
+   "dH_liquid_estimate": 50.3,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 1,
+   "in_literature_file": true
+  },
+  {
+   "lean": "c1cnc2cc3cc[nH]c3cc2c1",
+   "rich": "C1CNC2CC3CCNC3CC2C1",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 46.1,
+   "dH_liquid_estimate": 49.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2c(c1)ccc1cc[nH]c12",
+   "rich": "C1CNC2C(C1)CCC1CCNC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 46.0,
+   "dH_liquid_estimate": 49.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2ccc3[nH]ccc3c2c1",
+   "rich": "C1CNC2CCC3NCCC3C2C1",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 47.0,
+   "dH_liquid_estimate": 50.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  }
+ ],
+ "top_no_aminal": [
+  {
+   "lean": "c1cnc2c(c1)ncc1ncccc12",
+   "rich": "C1CNC2C(C1)NCC1NCCCC12",
+   "n_H2": 7,
+   "wt_pct": 7.23,
+   "dH_gas_computed": 46.1,
+   "dH_liquid_estimate": 49.6,
+   "heavy_atoms": 14,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ccc2c(c1)[nH]c1ccccc12",
+   "rich": "C1CCC2C(C1)NC1CCCCC12",
+   "n_H2": 6,
+   "wt_pct": 6.75,
+   "dH_gas_computed": 46.9,
+   "dH_liquid_estimate": 50.3,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 1,
+   "in_literature_file": true
+  },
+  {
+   "lean": "c1cnc2cc3cc[nH]c3cc2c1",
+   "rich": "C1CNC2CC3CCNC3CC2C1",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 46.1,
+   "dH_liquid_estimate": 49.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2c(c1)ccc1cc[nH]c12",
+   "rich": "C1CNC2C(C1)CCC1CCNC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 46.0,
+   "dH_liquid_estimate": 49.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2ccc3[nH]ccc3c2c1",
+   "rich": "C1CNC2CCC3NCCC3C2C1",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 47.0,
+   "dH_liquid_estimate": 50.5,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2ccc3cc[nH]c3c2c1",
+   "rich": "C1CNC2CCC3CCNC3C2C1",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 47.6,
+   "dH_liquid_estimate": 51.1,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2c(c1)ccc1[nH]ccc12",
+   "rich": "C1CNC2C(C1)CCC1NCCC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 46.2,
+   "dH_liquid_estimate": 49.7,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ccc2c(c1)[nH]c1cnccc12",
+   "rich": "C1CCC2C(C1)NC1CNCCC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 43.7,
+   "dH_liquid_estimate": 47.2,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ccc2c(c1)[nH]c1cccnc12",
+   "rich": "C1CCC2C(C1)NC1CCCNC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 44.4,
+   "dH_liquid_estimate": 47.9,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1ccc2c(c1)[nH]c1ccncc12",
+   "rich": "C1CCC2C(C1)NC1CCNCC12",
+   "n_H2": 6,
+   "wt_pct": 6.71,
+   "dH_gas_computed": 43.9,
+   "dH_liquid_estimate": 47.4,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 2,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2cc3c[nH]cc3nc2c1",
+   "rich": "C1CNC2CC3CNCC3NC2C1",
+   "n_H2": 6,
+   "wt_pct": 6.67,
+   "dH_gas_computed": 48.4,
+   "dH_liquid_estimate": 51.9,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  },
+  {
+   "lean": "c1cnc2cc3[nH]ccc3nc2c1",
+   "rich": "C1CNC2CC3NCCC3NC2C1",
+   "n_H2": 6,
+   "wt_pct": 6.67,
+   "dH_gas_computed": 48.8,
+   "dH_liquid_estimate": 52.3,
+   "heavy_atoms": 13,
+   "aminal_in_rich_form": false,
+   "NH_groups_in_rich_form": 3,
+   "in_literature_file": false
+  }
+ ]
+}

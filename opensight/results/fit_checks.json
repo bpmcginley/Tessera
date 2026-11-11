@@ -1,0 +1,128 @@
+{
+ "nominal": {
+  "on_axis_mean": 0.002,
+  "on_axis_worst": 0.009,
+  "field_mean": 0.068,
+  "field_worst_rx": 0.08
+ },
+ "decentered": {
+  "+2 mm x, +0 mm y": {
+   "on_axis_mean": 0.062,
+   "on_axis_worst": 0.108,
+   "field_mean": 0.107,
+   "field_worst_rx": 0.162
+  },
+  "+4 mm x, +0 mm y": {
+   "on_axis_mean": 0.132,
+   "on_axis_worst": 0.235,
+   "field_mean": 0.166,
+   "field_worst_rx": 0.245
+  },
+  "-4 mm x, +0 mm y": {
+   "on_axis_mean": 0.089,
+   "on_axis_worst": 0.128,
+   "field_mean": 0.26,
+   "field_worst_rx": 0.353
+  },
+  "+0 mm x, +3 mm y": {
+   "on_axis_mean": 0.078,
+   "on_axis_worst": 0.114,
+   "field_mean": 0.172,
+   "field_worst_rx": 0.227
+  },
+  "+0 mm x, -3 mm y": {
+   "on_axis_mean": 0.091,
+   "on_axis_worst": 0.114,
+   "field_mean": 0.172,
+   "field_worst_rx": 0.227
+  },
+  "+3 mm x, +3 mm y": {
+   "on_axis_mean": 0.12,
+   "on_axis_worst": 0.235,
+   "field_mean": 0.17,
+   "field_worst_rx": 0.233
+  }
+ },
+ "tilted": {
+  "pantoscopic 5 deg, wrap 0 deg": {
+   "on_axis_mean": 0.072,
+   "on_axis_worst": 0.13,
+   "field_mean": 0.152,
+   "field_worst_rx": 0.199
+  },
+  "pantoscopic 10 deg, wrap 0 deg": {
+   "on_axis_mean": 0.168,
+   "on_axis_worst": 0.306,
+   "field_mean": 0.289,
+   "field_worst_rx": 0.4
+  },
+  "pantoscopic 0 deg, wrap 5 deg": {
+   "on_axis_mean": 0.065,
+   "on_axis_worst": 0.116,
+   "field_mean": 0.142,
+   "field_worst_rx": 0.212
+  },
+  "pantoscopic 8 deg, wrap 5 deg": {
+   "on_axis_mean": 0.093,
+   "on_axis_worst": 0.137,
+   "field_mean": 0.266,
+   "field_worst_rx": 0.36
+  }
+ },
+ "wider_range_same_plates": {
+  "-8 D": {
+   "slide_mm": -8.64,
+   "on_axis_mean": 0.021,
+   "on_axis_worst": 0.022,
+   "field_mean": 0.115,
+   "field_worst_rx": 0.121
+  },
+  "-7 D": {
+   "slide_mm": -7.28,
+   "on_axis_mean": 0.014,
+   "on_axis_worst": 0.014,
+   "field_mean": 0.099,
+   "field_worst_rx": 0.107
+  },
+  "+4 D": {
+   "slide_mm": 7.24,
+   "on_axis_mean": 0.001,
+   "on_axis_worst": 0.001,
+   "field_mean": 0.097,
+   "field_worst_rx": 0.111
+  },
+  "+5 D": {
+   "slide_mm": 8.54,
+   "on_axis_mean": 0.003,
+   "on_axis_worst": 0.003,
+   "field_mean": 0.134,
+   "field_worst_rx": 0.145
+  }
+ },
+ "thinner_plates_no_reoptimisation": {
+  "centre thickness 2.2 mm": {
+   "min_thickness_mm": 1.38,
+   "weight_g_per_eye": 6.42,
+   "on_axis_mean": 0.002,
+   "on_axis_worst": 0.009,
+   "field_mean": 0.068,
+   "field_worst_rx": 0.08
+  },
+  "centre thickness 1.9 mm": {
+   "min_thickness_mm": 1.08,
+   "weight_g_per_eye": 5.59,
+   "on_axis_mean": 0.002,
+   "on_axis_worst": 0.009,
+   "field_mean": 0.069,
+   "field_worst_rx": 0.081
+  },
+  "centre thickness 1.7 mm": {
+   "min_thickness_mm": 0.88,
+   "weight_g_per_eye": 5.04,
+   "on_axis_mean": 0.002,
+   "on_axis_worst": 0.009,
+   "field_mean": 0.069,
+   "field_worst_rx": 0.081
+  }
+ }
+}

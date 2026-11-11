@@ -1,0 +1,28 @@
+{
+ "front_plate": {
+  "volume_mm3": 1529.4,
+  "mass_g": 1.84,
+  "size_mm": [
+   32.0,
+   32.0,
+   3.89
+  ],
+  "valid": true
+ },
+ "rear_plate": {
+  "volume_mm3": 1658.6,
+  "mass_g": 1.99,
+  "size_mm": [
+   32.0,
+   32.0,
+   3.28
+  ],
+  "valid": true
+ },
+ "cell_layout": {
+  "plate_diameter_mm": 32.0,
+  "cell_outer_diameter_mm": 47.8,
+  "depth_mm": 10.5,
+  "note": "block-level layout for discussion; not an engineered mechanism"
+ }
+}

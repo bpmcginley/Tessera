@@ -1,0 +1,112 @@
+{
+ "design": "results/design_A0.000635_gap1_wide.json",
+ "tool": "optiland",
+ "cases": [
+  {
+   "slide": [
+    0,
+    0
+   ],
+   "field_deg": [
+    0,
+    0
+   ],
+   "rays": 40,
+   "max_direction_diff": 9.435536553470403e-12,
+   "max_position_diff_mm": 2.369562359660904e-07
+  },
+  {
+   "slide": [
+    -5.9,
+    0
+   ],
+   "field_deg": [
+    0,
+    0
+   ],
+   "rays": 40,
+   "max_direction_diff": 1.8395007739258062e-14,
+   "max_position_diff_mm": 9.976464099281657e-10
+  },
+  {
+   "slide": [
+    5.9,
+    0
+   ],
+   "field_deg": [
+    0,
+    0
+   ],
+   "rays": 40,
+   "max_direction_diff": 1.472953703451907e-14,
+   "max_position_diff_mm": 8.488156844066452e-10
+  },
+  {
+   "slide": [
+    0,
+    2
+   ],
+   "field_deg": [
+    0,
+    0
+   ],
+   "rays": 40,
+   "max_direction_diff": 9.712799141359252e-12,
+   "max_position_diff_mm": 3.6757024091116364e-09
+  },
+  {
+   "slide": [
+    -5.9,
+    1.5
+   ],
+   "field_deg": [
+    15,
+    10
+   ],
+   "rays": 40,
+   "max_direction_diff": 2.6333141223133794e-10,
+   "max_position_diff_mm": 1.0384310300537436e-08
+  },
+  {
+   "slide": [
+    4,
+    -2
+   ],
+   "field_deg": [
+    -20,
+    5
+   ],
+   "rays": 40,
+   "max_direction_diff": 5.856535700843324e-09,
+   "max_position_diff_mm": 2.3904797608054196e-07
+  },
+  {
+   "slide": [
+    2,
+    1
+   ],
+   "field_deg": [
+    8,
+    -18
+   ],
+   "rays": 40,
+   "max_direction_diff": 6.382085693257267e-09,
+   "max_position_diff_mm": 2.6929623153648663e-07
+  },
+  {
+   "slide": [
+    -3,
+    0.5
+   ],
+   "field_deg": [
+    20,
+    20
+   ],
+   "rays": 40,
+   "max_direction_diff": 4.3798195958899555e-08,
+   "max_position_diff_mm": 2.1440093913582814e-06
+  }
+ ],
+ "worst_direction_diff": 4.3798195958899555e-08,
+ "worst_position_diff_mm": 2.1440093913582814e-06
+}

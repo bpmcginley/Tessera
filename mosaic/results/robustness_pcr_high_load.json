@@ -1,0 +1,77 @@
+{
+ "scenario": "pcr_high_load",
+ "N": 40000,
+ "settings": {
+  "tau_neg": 0.004,
+  "tau_pos": 0.9,
+  "q": 3,
+  "dorfman_triage": 0.002
+ },
+ "rows": [
+  {
+   "case": "calibrated",
+   "mosaic": {
+    "tests_pp": 0.176275,
+    "sens": 0.8910012674271229,
+    "spec": 0.9998469817143149
+   },
+   "informative_dorfman": {
+    "tests_pp": 0.2323,
+    "sens": 0.9188846641318125,
+    "spec": 0.9998979878095432
+   }
+  },
+  {
+   "case": "risk 2x overstated",
+   "mosaic": {
+    "tests_pp": 0.21275,
+    "sens": 0.9201520912547528,
+    "spec": 0.999872484761929
+   },
+   "informative_dorfman": {
+    "tests_pp": 0.245075,
+    "sens": 0.9226869455006337,
+    "spec": 0.9998979878095432
+   }
+  },
+  {
+   "case": "risk 2x understated",
+   "mosaic": {
+    "tests_pp": 0.1459,
+    "sens": 0.844106463878327,
+    "spec": 1.0
+   },
+   "informative_dorfman": {
+    "tests_pp": 0.236725,
+    "sens": 0.9011406844106464,
+    "spec": 0.9997959756190865
+   }
+  },
+  {
+   "case": "overconfident (slope 1.5)",
+   "mosaic": {
+    "tests_pp": 0.070975,
+    "sens": 0.523447401774398,
+    "spec": 1.0
+   },
+   "informative_dorfman": {
+    "tests_pp": 0.1688,
+    "sens": 0.6945500633713562,
+    "spec": 0.9997704725714723
+   }
+  },
+  {
+   "case": "underconfident (slope 0.6)",
+   "mosaic": {
+    "tests_pp": 0.298525,
+    "sens": 0.935361216730038,
+    "spec": 0.9997959756190865
+   },
+   "informative_dorfman": {
+    "tests_pp": 0.29095,
+    "sens": 0.9277566539923955,
+    "spec": 0.9999489939047717
+   }
+  }
+ ]
+}

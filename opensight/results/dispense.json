@@ -1,0 +1,102 @@
+{
+ "scales": {
+  "sphere_D_per_mm": 0.7595830637224962,
+  "sphere_at_centre_D": -1.5273298960564268,
+  "cyl_D_per_mm": 1.5136183278507158,
+  "sphere_scale_max_nonlinearity_D": 0.03220212515805976,
+  "cyl_scale_max_nonlinearity_D": 0.0004755340878070946,
+  "click_pitch_mm_per_quarter_dioptre_sphere": 0.32912792812259734,
+  "click_pitch_mm_per_quarter_dioptre_cyl": 0.1651671332197669
+ },
+ "set_by_clicks": {
+  "play 0.05 mm, axis 2.0 deg": {
+   "sphere_err_p95": 0.0787629380282652,
+   "cyl_err_p95": 0.13040797050380173,
+   "on_axis_blur_p95": 0.12665094796183904,
+   "field_blur_mean": 0.09723173597899408,
+   "field_blur_p95": 0.15527210818919185
+  },
+  "play 0.1 mm, axis 3.0 deg": {
+   "sphere_err_p95": 0.12973915373027392,
+   "cyl_err_p95": 0.3128050201257778,
+   "on_axis_blur_p95": 0.23345254630968665,
+   "field_blur_mean": 0.13949102369052735,
+   "field_blur_p95": 0.2343536009077387
+  },
+  "play 0.2 mm, axis 5.0 deg": {
+   "sphere_err_p95": 0.32190229146505495,
+   "cyl_err_p95": 0.615496437731268,
+   "on_axis_blur_p95": 0.4913814416222816,
+   "field_blur_mean": 0.27405548554892184,
+   "field_blur_p95": 0.499235109577701
+  }
+ },
+ "fit_distance_to_rotation_centre": {
+  "23 mm": {
+   "mean_blur_at_20deg": 0.13496497986691355,
+   "worst": 0.2124344361430911
+  },
+  "25 mm": {
+   "mean_blur_at_20deg": 0.10271389995670527,
+   "worst": 0.20196128660644458
+  },
+  "27 mm": {
+   "mean_blur_at_20deg": 0.08758337526561547,
+   "worst": 0.19059648698478004
+  },
+  "29 mm": {
+   "mean_blur_at_20deg": 0.09675299243792582,
+   "worst": 0.22662424482349486
+  },
+  "31 mm": {
+   "mean_blur_at_20deg": 0.1313267860964426,
+   "worst": 0.3072998778927265
+  }
+ },
+ "colour_fringe_arcmin": {
+  "-6 D": {
+   "0 deg": {
+    "sliding_pair": 0.47,
+    "ordinary_lens": 0.0
+   },
+   "10 deg": {
+    "sliding_pair": 3.66,
+    "ordinary_lens": 3.36
+   },
+   "20 deg": {
+    "sliding_pair": 7.67,
+    "ordinary_lens": 7.19
+   }
+  },
+  "-3 D": {
+   "0 deg": {
+    "sliding_pair": 0.11,
+    "ordinary_lens": 0.0
+   },
+   "10 deg": {
+    "sliding_pair": 1.8,
+    "ordinary_lens": 1.69
+   },
+   "20 deg": {
+    "sliding_pair": 3.79,
+    "ordinary_lens": 3.66
+   }
+  },
+  "+3 D": {
+   "0 deg": {
+    "sliding_pair": 0.57,
+    "ordinary_lens": 0.0
+   },
+   "10 deg": {
+    "sliding_pair": 1.86,
+    "ordinary_lens": 1.7
+   },
+   "20 deg": {
+    "sliding_pair": 3.85,
+    "ordinary_lens": 3.81
+   }
+  }
+ },
+ "weight_g_per_eye_both_plates": 6.425842576275196,
+ "stack_thickness_mm_max": 5.922235494880546
+}
