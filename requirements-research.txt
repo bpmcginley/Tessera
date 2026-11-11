@@ -1,0 +1,14 @@
+# Python packages for the three research folders (mosaic/, opensight/, lohc/).
+# Core (all projects)
+numpy
+scipy
+matplotlib
+# opensight: independent ray-trace check and 3D models
+optiland
+cadquery
+# lohc: chemistry (only needed to compute NEW molecules; cached results re-run without them)
+rdkit
+pyscf
+pyscf-dispersion
+ase
+tblite   # may have no Windows wheel; skip it there, or use WSL / conda-forge
